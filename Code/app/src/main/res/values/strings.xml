@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Sorts</string>
+    <string name="def_algorithm_name">Algorithm name</string>
+    <string name="def_algorithm_description">Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry.
+    </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
