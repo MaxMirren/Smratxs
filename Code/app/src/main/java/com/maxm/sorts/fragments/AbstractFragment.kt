@@ -13,7 +13,9 @@ abstract class AbstractFragment() : Fragment(){
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         thisObject = inflater.inflate(layoutResInt, container, false)
+        initialize()
         return thisObject
     }
 
-}
+    internal abstract fun initialize()
+    }

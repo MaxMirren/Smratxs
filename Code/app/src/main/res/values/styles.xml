@@ -6,6 +6,11 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="drawerArrowStyle">@style/BarStyle</item>
+    </style>
+
+    <style name="BarStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@android:color/white</item>
     </style>
 
     <style name="SortsFAB" parent="Widget.Design.FloatingActionButton">
@@ -15,9 +20,10 @@
     </style>
 
     <style name="AlgorithmName" parent="TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
-        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
         <item name="android:layout_marginTop">13dp</item>
         <item name="android:layout_marginBottom">15dp</item>
         <item name="android:textSize">26sp</item>
@@ -27,12 +33,13 @@
     <style name="AlgorithmDescription" parent="TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">20dp</item>
-        <item name="android:layout_marginRight">20dp</item>
         <item name="android:layout_marginTop">10dp</item>
-        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:layout_marginBottom">45dp</item>
         <item name="android:textSize">20sp</item>
         <item name="android:lineSpacingExtra">5dp</item>
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
+        <item name="android:textAlignment">textStart</item>
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
