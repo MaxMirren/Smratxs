@@ -3,9 +3,9 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/a_m_lyt_drl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/a_m_lyt_drl"
         tools:context=".ActivityMain">
 
     <android.support.constraint.ConstraintLayout
@@ -16,7 +16,7 @@
                 android:id="@+id/a_m_view_pager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="56dp"
+                android:layout_marginBottom="@dimen/toolbar_height"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -26,7 +26,7 @@
         <include
                 android:id="@+id/a_m_bottom_app_bar"
                 layout="@layout/bottom_app_bar"
-                android:layout_height="56dp"
+                android:layout_height="@dimen/toolbar_height"
                 android:layout_width="match_parent"
                 app:layout_constraintTop_toBottomOf="@+id/a_m_view_pager"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -37,30 +37,20 @@
         <ImageButton
                 android:id="@+id/desc_a_m_img_btn_go"
                 android:contentDescription="@string/desc_a_m_img_btn_go"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:background="@drawable/custom_fab_shape"
-                android:src="@drawable/baseline_play_arrow_black_48dp"
-                android:scaleType="fitCenter"
-                android:padding="15dp"
+                style="@style/SortsFAB"
                 app:layout_constraintTop_toTopOf="@id/a_m_bottom_app_bar"
                 app:layout_constraintBottom_toBottomOf="@id/a_m_bottom_app_bar"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginBottom="75dp"
                 app:layout_constraintHorizontal_bias="0.5"
         />
 
     </android.support.constraint.ConstraintLayout>
 
     <android.support.design.widget.NavigationView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            app:menu="@menu/navigation_menu"
-            android:layout_gravity="start"
-            app:headerLayout="@layout/navigation_header"
-            android:background="@color/white"
             android:id="@+id/a_m_nav"
-            android:layout_marginBottom="56dp"
+            style="@style/SortsNavigationView"
+            app:menu="@menu/navigation_menu"
+            app:headerLayout="@layout/navigation_header"
     />
 </android.support.v4.widget.DrawerLayout>

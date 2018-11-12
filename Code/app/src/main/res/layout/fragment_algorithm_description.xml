@@ -12,8 +12,8 @@
             android:layout_height="wrap_content">
 
         <com.maxm.sorts.views.JustifiedTextView
-                android:id="@+id/v_txt_algorithm_name"
-                style="@style/AlgorithmName"
+                android:id="@+id/f_desc_txt_algorithm_name"
+                style="@style/SortsAlgorithmName"
                 android:text="@string/def_algorithm_name"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -25,10 +25,10 @@
         />
 
         <com.maxm.sorts.views.JustifiedTextView
-                android:id="@+id/v_txt_algorithm_desc"
-                style="@style/AlgorithmDescription"
+                android:id="@+id/f_desc_txt_algorithm_desc"
+                style="@style/SortsAlgorithmDescription"
                 android:text="@string/def_algorithm_description"
-                app:layout_constraintTop_toBottomOf="@+id/v_txt_algorithm_name"
+                app:layout_constraintTop_toBottomOf="@+id/f_desc_txt_algorithm_name"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -37,5 +37,4 @@
         />
 
     </android.support.constraint.ConstraintLayout>
-
 </ScrollView>

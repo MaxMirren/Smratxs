@@ -3,7 +3,7 @@
     <item android:gravity="fill"  >
         <shape android:shape="rectangle" >
             <solid android:color="@color/colorPrimary"/>
-            <size android:height="65dp"/>
+            <size android:height="@dimen/toolbar_height"/>
         </shape>
     </item>
     <item android:gravity="center">

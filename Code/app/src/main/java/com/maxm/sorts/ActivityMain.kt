@@ -7,7 +7,6 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.widget.ImageButton
-import android.widget.Toast
 import com.maxm.sorts.fragments.CustomFragmentPageAdapter
 import com.maxm.sorts.fragments.FragmentAlgorithmDescription
 import com.maxm.sorts.fragments.FragmentCode
@@ -57,7 +56,15 @@ class ActivityMain : AppCompatActivity() {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
             override fun onPageSelected(position: Int) {
-                Toast.makeText(this@ActivityMain, "onPageSelected called", Toast.LENGTH_LONG).show()
+                val bottomAppBar: Toolbar = this@ActivityMain.findViewById(R.id.a_m_bottom_app_bar)
+                if (position == 0) {
+                    bottomAppBar.background =
+                            this@ActivityMain.resources.getDrawable(R.drawable.main_bab_background_white, this@ActivityMain.theme)
+                }
+                else {
+                    bottomAppBar.background =
+                            this@ActivityMain.resources.getDrawable(R.drawable.main_bab_background_grey, this@ActivityMain.theme)
+                }
             }
 
         })
