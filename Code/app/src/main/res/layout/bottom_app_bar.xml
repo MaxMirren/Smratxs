@@ -12,19 +12,19 @@
             android:layout_height="@dimen/toolbar_height">
 
         <ImageButton
-                android:id="@+id/f_bab_img_btn_share"
+                android:id="@+id/a_m_bab_img_btn_share"
                 android:contentDescription="@string/desc_a_bab_img_btn_share"
                 style="@style/SortsToolbarImgBtn"
                 android:background="@drawable/baseline_share_white_48dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/f_bab_img_btn_code"
+                app:layout_constraintRight_toLeftOf="@id/a_m_bab_img_btn_code"
                 app:layout_constraintHorizontal_bias="1.0"
         />
 
         <ImageButton
-                android:id="@+id/f_bab_img_btn_code"
+                android:id="@+id/a_m_bab_img_btn_code"
                 android:contentDescription="@string/desc_a_bab_img_btn_code"
                 style="@style/SortsToolbarImgBtn"
                 android:background="@drawable/baseline_code_white_48dp"

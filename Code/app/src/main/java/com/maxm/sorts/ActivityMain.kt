@@ -7,6 +7,8 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.widget.ImageButton
+import android.widget.Toast
+import com.maxm.sorts.data.AlgorithmsListCreator
 import com.maxm.sorts.fragments.CustomFragmentPageAdapter
 import com.maxm.sorts.fragments.FragmentAlgorithmDescription
 import com.maxm.sorts.fragments.FragmentCode
@@ -33,7 +35,10 @@ class ActivityMain : AppCompatActivity() {
         initializeGloballyUsedViews()
         setViewPager()
         setFabBehaviour()
+        setImgBtnShareBehaviour()
+        setImgBtnCodeBehaviour()
         setBottomNavigationView()
+        initializeAlgorithmsList()
     }
 
     /**
@@ -83,6 +88,24 @@ class ActivityMain : AppCompatActivity() {
     }
 
     /**
+     * Sets ImgBtn Share (placed on bottom_app_bar.xml) behaviour
+     */
+    private fun setImgBtnShareBehaviour() {
+        val imgBtnCode: ImageButton = findViewById(R.id.a_m_bab_img_btn_share)
+        imgBtnCode.setOnClickListener {
+            Toast.makeText(this, "This function is not implemented yet", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    /**
+     * Sets ImgBtn Code (placed on bottom_app_bar.xml) behaviour
+     */
+    private fun setImgBtnCodeBehaviour() {
+        val imgBtnCode: ImageButton = findViewById(R.id.a_m_bab_img_btn_code)
+        imgBtnCode.setOnClickListener {viewPager.currentItem = 1}
+    }
+
+    /**
      * Sets navigation drawer availability and content
      */
     private fun setBottomNavigationView() {
@@ -97,5 +120,17 @@ class ActivityMain : AppCompatActivity() {
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
     }
+
+    /**
+     * Initializes list of algorithms places in strings.xml
+     */
+    private fun initializeAlgorithmsList() {
+        val namesArray = resources.getStringArray(R.array.sorts_names)
+        val descriptionArray = resources.getStringArray(R.array.sorts_description)
+        val codeArray = resources.getStringArray(R.array.sorts_code)
+        val debuggerArray = resources.getStringArray(R.array.sorts_debugs)
+        AlgorithmsListCreator(namesArray, descriptionArray, codeArray, debuggerArray, R.string.category_0)
+    }
+
 
 }

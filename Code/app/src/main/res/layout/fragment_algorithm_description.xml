@@ -11,7 +11,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <com.maxm.sorts.views.JustifiedTextView
+        <com.maxm.sorts.views.FontFlexTextView
                 android:id="@+id/f_desc_txt_algorithm_name"
                 style="@style/SortsAlgorithmName"
                 android:text="@string/def_algorithm_name"
