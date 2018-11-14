@@ -50,7 +50,6 @@
     <android.support.design.widget.NavigationView
             android:id="@+id/a_m_nav"
             style="@style/SortsNavigationView"
-            app:menu="@menu/navigation_menu"
             app:headerLayout="@layout/navigation_header"
     />
 </android.support.v4.widget.DrawerLayout>

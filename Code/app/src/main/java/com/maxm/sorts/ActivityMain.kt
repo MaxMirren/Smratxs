@@ -7,8 +7,10 @@ import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.view.Menu
 import android.widget.ImageButton
 import android.widget.Toast
+import com.maxm.sorts.data.Algorithm
 import com.maxm.sorts.data.AlgorithmsListCreator
 import com.maxm.sorts.fragments.CustomFragmentPageAdapter
 import com.maxm.sorts.fragments.FragmentAlgorithmDescription
@@ -120,8 +122,6 @@ class ActivityMain : AppCompatActivity() {
                 )
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
-        val navigationView: NavigationView = findViewById(R.id.a_m_nav)
-        //navigationView.inflateMenu(R.string.category_0)
     }
 
     /**
@@ -133,6 +133,19 @@ class ActivityMain : AppCompatActivity() {
         val codeArray = resources.getStringArray(R.array.sorts_code)
         val debuggerArray = resources.getStringArray(R.array.sorts_debugs)
         AlgorithmsListCreator(namesArray, descriptionArray, codeArray, debuggerArray, R.string.category_0)
+
+        val navigationView: NavigationView = findViewById(R.id.a_m_nav)
+        navigationView.menu.addSubMenu(resources.getString(Algorithm.List.getCategoryByIndex(0)))
+        for (i in 0 until namesArray.size -1) {
+            navigationView.menu.add(0, i, 0, namesArray[i])
+        }
+        navigationView.setNavigationItemSelectedListener { it -> run {
+
+            Toast.makeText(this@ActivityMain, "Item with id ${it.itemId} pressed", Toast.LENGTH_LONG).show()
+
+        }
+            true
+        }
     }
 
 

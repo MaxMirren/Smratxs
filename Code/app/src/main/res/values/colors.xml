@@ -9,10 +9,4 @@
     <color name="transparent">#00FFFFFF</color>
     <color name="cardBackground">#484848</color>
     <color name="shadow">#a5a5a5</color>
-
-    <color name="highlighterKeyWords">#FF6600</color>
-    <color name="highlighterVars">#00FFB9</color>
-    <color name="highlighterChars">#42FF00</color>
-
-
 </resources>
