@@ -12,13 +12,15 @@ class FragmentAlgorithmDescription: AbstractFragment() {
     override val layoutResInt: Int =  R.layout.fragment_algorithm_description
 
     override fun initialize() {
+        setTextViewsParameters()
+    }
+
+    private fun setTextViewsParameters() {
         val textViewAlgorithmName: FontFlexTextView = thisObject.findViewById(R.id.f_desc_txt_algorithm_name)
         textViewAlgorithmName.setFont(activity!!.assets, Font.SEGOEUI_SEMI_BOLD)
+        textViewAlgorithmName.text = Algorithm.List.getFieldOfAlgorithmWithIndex(0, Algorithm.List.Fields.NAME)
         val textViewAlgorithmDesc: JustifiedTextView = thisObject.findViewById(R.id.f_desc_txt_algorithm_desc)
         textViewAlgorithmDesc.setFont(activity!!.assets, Font.SEGOEUI_LIGHT)
-
-
-        textViewAlgorithmName.text = Algorithm.List.getFieldOfAlgorithmWithIndex(0, Algorithm.List.Fields.NAME)
         textViewAlgorithmDesc.text = Algorithm.List.getFieldOfAlgorithmWithIndex(0, Algorithm.List.Fields.DESCRIPTION)
     }
 }

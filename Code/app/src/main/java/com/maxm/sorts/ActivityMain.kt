@@ -1,6 +1,7 @@
 package com.maxm.sorts
 
 import android.os.Bundle
+import android.support.design.widget.NavigationView
 import android.support.v4.view.ViewPager
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
@@ -119,6 +120,8 @@ class ActivityMain : AppCompatActivity() {
                 )
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
+        val navigationView: NavigationView = findViewById(R.id.a_m_nav)
+        //navigationView.inflateMenu(R.string.category_0)
     }
 
     /**
@@ -131,6 +134,7 @@ class ActivityMain : AppCompatActivity() {
         val debuggerArray = resources.getStringArray(R.array.sorts_debugs)
         AlgorithmsListCreator(namesArray, descriptionArray, codeArray, debuggerArray, R.string.category_0)
     }
+
 
 
 }
