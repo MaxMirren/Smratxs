@@ -5,13 +5,17 @@ import android.text.Html
 import com.maxm.sorts.views.FontFlexTextView
 import android.os.Build
 import android.text.Spanned
-import com.maxm.sorts.utils.TextToJavaCodeTransformer.Colors
-
 
 
 internal class TextColorizer(@NonNull private val sourceString: String, @NonNull private val fontFlexTextView: FontFlexTextView) {
 
     internal lateinit var colorizedString: String
+
+    enum class Colors(val color: String) {
+        KEY_WORDS("#FF6600"),
+        VALS_VARS("#00FFB9"),
+        CHARS("#42FF00")
+    }
 
     enum class ReservedWords(val text: String, val htmlText: String) {
         VAR("var", "<font color='" + Colors.KEY_WORDS.color + "'>var</font>"),
