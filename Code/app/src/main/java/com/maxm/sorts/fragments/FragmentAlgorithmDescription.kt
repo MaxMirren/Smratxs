@@ -7,20 +7,29 @@ import com.maxm.sorts.views.FontFlexTextView
 import com.maxm.sorts.views.JustifiedTextView
 
 
-class FragmentAlgorithmDescription: AbstractFragment() {
+internal class FragmentAlgorithmDescription: AbstractFragment() {
 
     override val layoutResInt: Int =  R.layout.fragment_algorithm_description
+    private lateinit var textViewAlgorithmName: FontFlexTextView
+    private lateinit var textViewAlgorithmDesc: JustifiedTextView
+
 
     override fun initialize() {
         setTextViewsParameters()
     }
 
     private fun setTextViewsParameters() {
-        val textViewAlgorithmName: FontFlexTextView = thisObject.findViewById(R.id.f_desc_txt_algorithm_name)
+        textViewAlgorithmName = thisObject.findViewById(R.id.f_desc_txt_algorithm_name)
         textViewAlgorithmName.setFont(activity!!.assets, Font.SEGOEUI_SEMI_BOLD)
-        textViewAlgorithmName.text = Algorithm.List.getFieldOfAlgorithmWithIndex(0, Algorithm.List.Fields.NAME)
-        val textViewAlgorithmDesc: JustifiedTextView = thisObject.findViewById(R.id.f_desc_txt_algorithm_desc)
+        textViewAlgorithmDesc = thisObject.findViewById(R.id.f_desc_txt_algorithm_desc)
         textViewAlgorithmDesc.setFont(activity!!.assets, Font.SEGOEUI_LIGHT)
-        textViewAlgorithmDesc.text = Algorithm.List.getFieldOfAlgorithmWithIndex(0, Algorithm.List.Fields.DESCRIPTION)
+        val algorithmName = Algorithm.List.getFieldOfAlgorithmWithIndex(0, Algorithm.List.Fields.NAME)
+        val algorithmDescription = Algorithm.List.getFieldOfAlgorithmWithIndex(0, Algorithm.List.Fields.DESCRIPTION)
+        setContent(algorithmName, algorithmDescription)
+    }
+
+    fun setContent(algorithmName: String, algorithmDescription: String) {
+        textViewAlgorithmName.text = algorithmName
+        textViewAlgorithmDesc.text = algorithmDescription
     }
 }

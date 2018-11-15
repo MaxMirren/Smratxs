@@ -20,10 +20,12 @@ import com.maxm.sorts.fragments.FragmentCode
  * This class represents and implements the logic of main layout.activity_main
  * @author MaxMirren
  */
-class ActivityMain : AppCompatActivity() {
+internal class ActivityMain : AppCompatActivity() {
 
     private lateinit var viewPager: ViewPager
     private lateinit var actionBarDrawerToggle : ActionBarDrawerToggle
+    private lateinit var fragmentAlgorithmDescription: FragmentAlgorithmDescription
+    private lateinit var fragmentCode: FragmentCode
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,7 +58,9 @@ class ActivityMain : AppCompatActivity() {
      */
     private fun setViewPager() {
         val customFragmentPageAdapter = CustomFragmentPageAdapter(supportFragmentManager!!)
-        customFragmentPageAdapter.setFragmentList(arrayListOf(FragmentAlgorithmDescription(), FragmentCode()))
+        fragmentAlgorithmDescription = FragmentAlgorithmDescription()
+        fragmentCode = FragmentCode()
+        customFragmentPageAdapter.setFragmentList(arrayListOf(fragmentAlgorithmDescription, fragmentCode))
         viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
 
             override fun onPageScrollStateChanged(state: Int) {}
@@ -135,14 +139,16 @@ class ActivityMain : AppCompatActivity() {
         AlgorithmsListCreator(namesArray, descriptionArray, codeArray, debuggerArray, R.string.category_0)
 
         val navigationView: NavigationView = findViewById(R.id.a_m_nav)
-        navigationView.menu.addSubMenu(resources.getString(Algorithm.List.getCategoryByIndex(0)))
         for (i in 0 until namesArray.size -1) {
             navigationView.menu.add(0, i, 0, namesArray[i])
         }
         navigationView.setNavigationItemSelectedListener { it -> run {
-
-            Toast.makeText(this@ActivityMain, "Item with id ${it.itemId} pressed", Toast.LENGTH_LONG).show()
-
+            val algorithmName = Algorithm.List.getFieldOfAlgorithmWithIndex(it.itemId, Algorithm.List.Fields.NAME)
+            val algorithmDescription = Algorithm.List.getFieldOfAlgorithmWithIndex(it.itemId, Algorithm.List.Fields.DESCRIPTION)
+            val algorithmCode = Algorithm.List.getFieldOfAlgorithmWithIndex(it.itemId, Algorithm.List.Fields.CODE)
+            val algorithmDebugger = Algorithm.List.getFieldOfAlgorithmWithIndex(it.itemId, Algorithm.List.Fields.DEBUGGER)
+            fragmentAlgorithmDescription.setContent(algorithmName, algorithmDescription)
+            fragmentCode.setContent(algorithmName, algorithmCode, algorithmDebugger)
         }
             true
         }

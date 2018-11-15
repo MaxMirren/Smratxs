@@ -2,7 +2,7 @@ package com.maxm.sorts.data
 
 import android.support.annotation.StringRes
 
-class AlgorithmsListCreator(private val namesArray: Array<String>,
+internal class AlgorithmsListCreator(private val namesArray: Array<String>,
                             private val descriptionArray: Array<String>,
                             private val codeArray: Array<String>,
                             private val debuggerArray: Array<String>,

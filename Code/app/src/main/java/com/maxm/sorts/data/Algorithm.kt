@@ -3,7 +3,7 @@ package com.maxm.sorts.data
 import android.support.annotation.StringRes
 import java.util.*
 
-data class Algorithm(val id: Int,
+internal data class Algorithm(val id: Int,
                      val name: String,
                      val description: String,
                      val code: String,

@@ -9,7 +9,7 @@ import com.maxm.sorts.views.Font
 
 import com.uncopt.android.widget.text.justify.JustifiedTextView
 
-class FontFlexTextView : TextView {
+internal class FontFlexTextView : TextView {
     constructor(context: Context) : super(context)
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)

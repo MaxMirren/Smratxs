@@ -5,16 +5,13 @@ import android.text.Html
 import com.maxm.sorts.views.FontFlexTextView
 import android.os.Build
 import android.text.Spanned
+import com.maxm.sorts.utils.TextToJavaCodeTransformer.Colors
 
 
 
-class TextColorizer(@NonNull private val sourceString: String, @NonNull private val fontFlexTextView: FontFlexTextView) {
+internal class TextColorizer(@NonNull private val sourceString: String, @NonNull private val fontFlexTextView: FontFlexTextView) {
 
-    enum class Colors(val color: String) {
-        KEY_WORDS("#FF6600"),
-        VALS_VARS("#00FFB9"),
-        CHARS("#42FF00")
-    }
+    internal lateinit var colorizedString: String
 
     enum class ReservedWords(val text: String, val htmlText: String) {
         VAR("var", "<font color='" + Colors.KEY_WORDS.color + "'>var</font>"),
@@ -38,7 +35,7 @@ class TextColorizer(@NonNull private val sourceString: String, @NonNull private 
         colorizedString = sourceString.replace(ReservedWords.ARRAY.text, ReservedWords.ARRAY.htmlText)
         colorizedString = sourceString.replace(ReservedWords.WHILE.text, ReservedWords.WHILE.htmlText)
         colorizedString = sourceString.replace(ReservedWords.ELSE.text, ReservedWords.ELSE.htmlText) */
-        val colorizedString = sourceString
+        colorizedString = sourceString
             .replace(ReservedWords.VAR.text, ReservedWords.VAR.htmlText)
             .replace(ReservedWords.VAL.text, ReservedWords.VAL.htmlText)
             .replace(ReservedWords.FOR.text, ReservedWords.FOR.htmlText)

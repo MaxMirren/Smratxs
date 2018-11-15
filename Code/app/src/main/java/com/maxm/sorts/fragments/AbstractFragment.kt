@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-abstract class AbstractFragment() : Fragment(){
+internal abstract class AbstractFragment : Fragment(){
 
-    lateinit var thisObject: View
-    internal abstract val layoutResInt: Int
+    protected lateinit var thisObject: View
+    protected abstract val layoutResInt: Int
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         thisObject = inflater.inflate(layoutResInt, container, false)

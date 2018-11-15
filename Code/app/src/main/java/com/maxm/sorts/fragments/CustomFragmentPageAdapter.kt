@@ -4,7 +4,7 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import java.util.*
 
-class CustomFragmentPageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+internal class CustomFragmentPageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     private lateinit var fragmentList: ArrayList<AbstractFragment>
 
