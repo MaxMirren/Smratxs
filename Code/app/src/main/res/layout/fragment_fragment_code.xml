@@ -25,13 +25,12 @@
                 <com.maxm.sorts.views.FontFlexTextView
                         android:id="@+id/f_code_txt_code"
                         style="@style/SortsCardViewTextView"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="30dp"
                 />
 
                 <com.maxm.sorts.views.FontFlexTextView
                         android:id="@+id/f_code_txt_code_numbering"
                         style="@style/SortsTextViewCodeNumbering"
-                        android:text="1\n2\n3\n4\n5"
                 />
             </android.support.v7.widget.CardView>
 
@@ -42,6 +41,8 @@
                 <com.maxm.sorts.views.FontFlexTextView
                         android:id="@+id/f_code_txt_debugger"
                         style="@style/SortsCardViewTextView"
+                        android:text="@string/f_code_c_debugger_code_txt_hint"
+                        android:textColor="@color/shadow"
                 />
             </android.support.v7.widget.CardView>
         </LinearLayout>

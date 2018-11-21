@@ -4,7 +4,6 @@ import com.maxm.sorts.R
 import com.maxm.sorts.data.Algorithm
 import com.maxm.sorts.views.Font
 import com.maxm.sorts.views.FontFlexTextView
-import android.text.Layout
 import com.maxm.sorts.utils.TextColorizer
 
 
@@ -38,8 +37,8 @@ internal class FragmentCode : AbstractFragment() {
     fun setContent(algorithmName: String, algorithmCode: String, algorithmDebugger: String) {
         textViewAlgorithmName.text = algorithmName
         TextColorizer(algorithmCode, textViewCode)
-        TextColorizer(algorithmDebugger, textViewDebugger)
-        lineCodeNumbered.useAsLineNumberedForFontTextView(textViewCode)
+        //TextColorizer(algorithmDebugger, textViewDebugger)
+        lineCodeNumbered.useAsLineNumberingForFontTextView(textViewCode)
     }
 
 }

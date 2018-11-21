@@ -14,6 +14,7 @@
     <string name="a_m_nd_m1_titleSample1">Algorithm name 1</string>
     <string name="a_m_nd_m1_titleSample2">Algorithm name 2</string>
     <string name="a_m_nd_m1_titleSample3">Algorithm name 3</string>
+    <string name="f_code_c_debugger_code_txt_hint">Run code to see the log&#8230;</string>
 
     <string-array name="sorts_names">
         <item>Stupid sort</item>
@@ -90,7 +91,7 @@
 
     <string-array name="sorts_code">
         <item>
-            while (i  int_array.length) {\n" +
+            while (i  int_array.length) \"Iteration started\" {\n" +
                                 if (int_array[i]  int_array[i-1]) {\n" +
                                     temp = int_array[i - 1];\n" +
                                     int_array[i - 1] = int_array[i];\n" +
@@ -100,6 +101,7 @@
                                 else {\n" +
                                     i++;\n" +
                                 }\n" +
+            \"Iteration started\"
                             }
         </item>
         <item>
