@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sorts_names">
+        <item>Stupid sort</item>
+        <item>Insertion sort</item>
+        <item>Bubble sort</item>
+        <item>Quick sort</item>
+        <item>Cocktail Shaker sort</item>
+        <item>Comb sort</item>
+    </string-array>
+
+    <string-array name="sorts_description">
+        <item>
+            This sort is a highly ineffective sorting function based on the generate and test paradigm.
+            The function successively generates permutations of its input until it finds one that is sorted.
+            It is not useful for sorting, but may be used for educational purposes, to contrast it with more efficient
+            algorithms. Two versions of the function exist: a deterministic version that enumerates all permutations
+            until it hits a sorted one, and a randomized version that randomly permutes its input.
+            An analogy for the working of the latter version is to sort a deck of cards by throwing the deck into the
+            air, picking the cards up at random, and repeating the process until the deck is sorted.
+            Its name is a portmanteau the words bogus and sort.
+        </item>
+        <item>
+            Insertion sort is a simple sorting algorithm that builds the final sorted array (or list) one item at a time.
+            It is much less efficient on large lists than more advanced algorithms such as quicksort, heapsort, or merge sort. However, insertion sort provides several advantages:
+            Simple implementation: Jon Bentley shows a three-line C version, and a five-line optimized version
+            Efficient for (quite) small data sets, much like other quadratic sorting algorithms
+            More efficient in practice than most other simple quadratic (i.e., O(n2)) algorithms such as selection sort
+            or bubble sort Adaptive, i.e., efficient for data sets that are already substantially sorted: the time
+            complexity is O(nk) when each element in the input is no more than k places away from its sorted position
+            Stable; i.e., does not change the relative order of elements with equal keys
+            In-place; i.e., only requires a constant amount O(1) of additional memory space
+            Online; i.e., can sort a list as it receives it
+            When people manually sort cards in a bridge hand, most use a method that is similar to insertion sort.
+        </item>
+        <item>
+            Bubble sort, sometimes referred to as sinking sort, is a simple sorting algorithm that repeatedly steps
+            through the list, compares adjacent pairs and swaps them if they are in the wrong order. The pass through
+            the list is repeated until the list is sorted. The algorithm, which is a comparison sort, is named for
+            the way smaller or larger elements "bubble" to the top of the list. Although the algorithm is simple,
+            it is too slow and impractical for most problems even when compared to insertion sort. Bubble sort can be
+            practical if the input is in mostly sorted order with some out-of-order elements nearly in position.
+        </item>
+        <item>
+            Quicksort (sometimes called partition-exchange sort) is an efficient sorting algorithm, serving as a
+            systematic method for placing the elements of an array in order. Developed by British computer scientist
+            Tony Hoare in 1959 and published in 1961, it is still a commonly used algorithm for sorting.
+            When implemented well, it can be about two or three times faster than its main competitors, merge sort
+            and heapsort. Quicksort is a comparison sort, meaning that it can sort items of any type for which a
+            "less-than" relation (formally, a total order) is defined. In efficient implementations it is not a stable
+            sort, meaning that the relative order of equal sort items is not preserved. Quicksort can operate in-place
+            on an array, requiring small additional amounts of memory to perform the sorting. It is very similar to
+            selection sort, except that it does not always choose worst-case partition.
+            Mathematical analysis of quicksort shows that, on average, the algorithm takes O(n log n) comparisons to
+            sort n items. In the worst case, it makes O(n2) comparisons, though this behavior is rare.
+        </item>
+        <item>
+            Cocktail shaker sort, also known as bidirectional bubble sort, cocktail sort, shaker sort (which can also
+            refer to a variant of selection sort), ripple sort, shuffle sort, or shuttle sort, is a variation of
+            bubble sort that is both a stable sorting algorithm and a comparison sort. The algorithm differs from a
+            bubble sort in that it sorts in both directions on each pass through the list. This sorting algorithm is
+            only marginally more difficult to implement than a bubble sort, and solves the problem of turtles in bubble
+            sorts. It provides only marginal performance improvements, and does not improve asymptotic performance;
+            like the bubble sort, it is not of practical interest (insertion sort is preferred for simple sorts),
+            though it finds some use in education.
+        </item>
+        <item>
+            Comb sort is a relatively simple sorting algorithm originally designed by Włodzimierz Dobosiewicz in 1980.
+            Later it was rediscovered by Stephen Lacey and Richard Box in 1991. Comb sort improves on bubble sort.
+            The basic idea is to eliminate turtles, or small values near the end of the list, since in a bubble sort
+            these slow the sorting down tremendously.
+            Rabbits, large values around the beginning of the list, do not pose a problem in bubble sort.
+        </item>
+    </string-array>
+
+    <string-array name="sorts_debugs">
+        <item>
+            Stupid sort
+            c = A (3)
+            Loop while: c low= Z (4)
+            - Iteration 1 (5)
+            c = B (6)
+            - Iteration 2 (5)
+            c = C (7)
+            - Iteration 3 (5)
+            c = D (6)
+        </item>
+        <item>
+            Insertion sort
+            c = A (3)
+            Loop while: c low= Z (4)
+            - Iteration 1 (5)
+            c = B (6)
+            - Iteration 2 (5)
+            c = C (7)
+            - Iteration 3 (5)
+            c = D (6)
+        </item>
+        <item>
+            Bubble sort
+            c = A (3)
+            Loop while: c low= Z (4)
+            - Iteration 1 (5)
+            c = B (6)
+            - Iteration 2 (5)
+            c = C (7)
+            - Iteration 3 (5)
+            c = D (6)
+        </item>
+        <item>
+            Quick sort
+            c = A (3)
+            Loop while: c low= Z (4)
+            - Iteration 1 (5)
+            c = B (6)
+            - Iteration 2 (5)
+            c = C (7)
+            - Iteration 3 (5)
+            c = D (6)
+        </item>
+        <item>
+            Cocktail Shaker sort
+            c = A (3)
+            Loop while: c low= Z (4)
+            - Iteration 1 (5)
+            c = B (6)
+            - Iteration 2 (5)
+            c = C (7)
+            - Iteration 3 (5)
+            c = D (6)
+        </item>
+        <item>
+            Comb sort
+            c = A (3)
+            Loop while: c low= Z (4)
+            - Iteration 1 (5)
+            c = B (6)
+            - Iteration 2 (5)
+            c = C (7)
+            - Iteration 3 (5)
+            c = D (6)
+        </item>
+    </string-array>
+
+    <string name="category_0">Sorts</string>
+</resources>

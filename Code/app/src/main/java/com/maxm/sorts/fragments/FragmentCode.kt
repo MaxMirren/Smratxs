@@ -1,7 +1,11 @@
 package com.maxm.sorts.fragments
 
+import android.os.Build
+import android.text.Html
+import android.text.Spanned
 import com.maxm.sorts.R
 import com.maxm.sorts.data.Algorithm
+import com.maxm.sorts.data.sortsCode
 import com.maxm.sorts.views.Font
 import com.maxm.sorts.views.FontFlexTextView
 import com.maxm.sorts.utils.TextColorizer
@@ -29,16 +33,29 @@ internal class FragmentCode : AbstractFragment() {
         lineCodeNumbered = thisObject.findViewById(R.id.f_code_txt_code_numbering)
         lineCodeNumbered.setFont(activity!!.assets, Font.LUCIDA_CONSOLE)
         val algorithmName = Algorithm.List.getFieldOfAlgorithmWithIndex(0, Algorithm.List.Fields.NAME)
-        val algorithmCode = Algorithm.List.getFieldOfAlgorithmWithIndex(0, Algorithm.List.Fields.CODE)
+        val algorithmCode = sortsCode[algorithmName]!!
         val algorithmDebugger = Algorithm.List.getFieldOfAlgorithmWithIndex(0, Algorithm.List.Fields.DEBUGGER)
-        setContent(algorithmName, algorithmCode, algorithmDebugger)
+        setContent(algorithmName, algorithmDebugger)
     }
 
-    fun setContent(algorithmName: String, algorithmCode: String, algorithmDebugger: String) {
+    fun setContent(algorithmName: String, algorithmDebugger: String) {
         textViewAlgorithmName.text = algorithmName
-        TextColorizer(algorithmCode, textViewCode)
-        //TextColorizer(algorithmDebugger, textViewDebugger)
+        textViewCode.text = fromHtml(sortsCode.getValue(algorithmName))
+        textViewDebugger.text = fromHtml(TextColorizer(algorithmDebugger).getColorizedText())
         lineCodeNumbered.useAsLineNumberingForFontTextView(textViewCode)
     }
 
+    /**
+     * Gets spanned content from HTML in two ways in dependence on Android version
+     * @param html is string data which is to be converted to spanned html data
+     * @suppress using Html.fromHtml method for Android versions under Marshmallow
+     */
+    @Suppress("DEPRECATION")
+    private fun fromHtml(html: String): Spanned {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY)
+        } else {
+            Html.fromHtml(html)
+        }
+    }
 }

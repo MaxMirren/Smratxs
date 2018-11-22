@@ -7,14 +7,15 @@ import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-import android.view.Menu
 import android.widget.ImageButton
 import android.widget.Toast
 import com.maxm.sorts.data.Algorithm
 import com.maxm.sorts.data.AlgorithmsListCreator
+import com.maxm.sorts.data.sortsCode
 import com.maxm.sorts.fragments.CustomFragmentPageAdapter
 import com.maxm.sorts.fragments.FragmentAlgorithmDescription
 import com.maxm.sorts.fragments.FragmentCode
+import com.maxm.sorts.utils.TextColorizer
 
 /**
  * This class represents and implements the logic of main layout.activity_main
@@ -134,10 +135,11 @@ internal class ActivityMain : AppCompatActivity() {
     private fun initializeAlgorithmsList() {
         val namesArray = resources.getStringArray(R.array.sorts_names)
         val descriptionArray = resources.getStringArray(R.array.sorts_description)
-        val codeArray = resources.getStringArray(R.array.sorts_code)
         val debuggerArray = resources.getStringArray(R.array.sorts_debugs)
-        AlgorithmsListCreator(namesArray, descriptionArray, codeArray, debuggerArray, R.string.category_0)
-
+        AlgorithmsListCreator(namesArray, descriptionArray, debuggerArray, R.string.category_0)
+        for (key in sortsCode.keys) {
+            sortsCode[key] = TextColorizer(sortsCode.getValue(key)).getColorizedText()
+        }
         val navigationView: NavigationView = findViewById(R.id.a_m_nav)
         for (i in 0 until namesArray.size -1) {
             navigationView.menu.add(0, i, 0, namesArray[i])
@@ -145,10 +147,10 @@ internal class ActivityMain : AppCompatActivity() {
         navigationView.setNavigationItemSelectedListener { it -> run {
             val algorithmName = Algorithm.List.getFieldOfAlgorithmWithIndex(it.itemId, Algorithm.List.Fields.NAME)
             val algorithmDescription = Algorithm.List.getFieldOfAlgorithmWithIndex(it.itemId, Algorithm.List.Fields.DESCRIPTION)
-            val algorithmCode = Algorithm.List.getFieldOfAlgorithmWithIndex(it.itemId, Algorithm.List.Fields.CODE)
+            //val algorithmCode = sortsCode.getValue(algorithmName)
             val algorithmDebugger = Algorithm.List.getFieldOfAlgorithmWithIndex(it.itemId, Algorithm.List.Fields.DEBUGGER)
             fragmentAlgorithmDescription.setContent(algorithmName, algorithmDescription)
-            fragmentCode.setContent(algorithmName, algorithmCode, algorithmDebugger)
+            fragmentCode.setContent(algorithmName, algorithmDebugger)
         }
             true
         }

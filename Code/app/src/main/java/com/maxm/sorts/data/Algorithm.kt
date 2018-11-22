@@ -3,21 +3,18 @@ package com.maxm.sorts.data
 import android.support.annotation.StringRes
 import java.util.*
 
-internal data class Algorithm(val id: Int,
-                     val name: String,
-                     val description: String,
-                     val code: String,
-                     val debugger: String) {
+internal data class Algorithm(private val id: Int,
+                              private val name: String,
+                              private val description: String,
+                              private val debugger: String) {
 
     object List {
         private var list: LinkedList<Algorithm> = LinkedList()
         private var categories: LinkedList<Int> = LinkedList()
-        private var categoryCounter = 0
 
         enum class Fields {
             NAME,
             DESCRIPTION,
-            CODE,
             DEBUGGER
         }
 
@@ -25,6 +22,7 @@ internal data class Algorithm(val id: Int,
             categories.add(resId)
         }
 
+        @Suppress("UNUSED")
         fun getCategoryByIndex(index: Int) = categories[index]
 
         fun getCategoriesSize() = categories.size
@@ -33,21 +31,20 @@ internal data class Algorithm(val id: Int,
             list.add(algorithm)
         }
 
+        @Suppress("UNUSED")
         fun getAllAlgorithmFieldsByIndex(index: Int) = list[index]
 
         fun getFieldOfAlgorithmWithIndex(index: Int, field: Fields) =
             when (field) {
                 Fields.NAME -> list[index].name
                 Fields.DESCRIPTION -> list[index].description
-                Fields.CODE -> list[index].code
                 Fields.DEBUGGER -> list[index].debugger
             }
 
+        @Suppress("UNUSED")
         fun clearAll() {
             list.clear()
             categories.clear()
         }
-
-
     }
 }
