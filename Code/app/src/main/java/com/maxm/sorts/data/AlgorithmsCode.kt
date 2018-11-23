@@ -17,7 +17,8 @@ internal var sortsCode: HashMap<String, String> = hashMapOf(
 
     "Insertion sort" to
             "for(int i = 1; i < int_array.length; i++) {<br>" +
-            "&emsp;for (int j = i; j > 0 && int_array[j - 1] > int_array[j]; j--) {<br>" + "... <br>}",
+            "&emsp;for (int j = i; j > 0 && int_array[j - 1] > int_array[j]; j--) {<br>" +
+            "&emsp;... <br>}",
 
     "Bubble sort" to
             "int temp;<br>" +

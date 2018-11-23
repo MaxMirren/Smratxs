@@ -58,9 +58,9 @@ internal class FontFlexTextView : TextView {
     }
 
     /**
-     * Checks if current color is set to R.color.shadow
-     * @return false if current color is NOT set to R.color.shadow
-     * @suppress using resources.getColor method for Android versions under Marshmallow
+     * Checks if current hexCode is set to R.hexCode.shadow
+     * @return false if current hexCode is NOT set to R.hexCode.shadow
+     * @suppress using resources.getHexCode method for Android versions under Marshmallow
      */
     @Suppress("DEPRECATION")
     private fun thisColorIsShadow(): Boolean {

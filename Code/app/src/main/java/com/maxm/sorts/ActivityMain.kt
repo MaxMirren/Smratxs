@@ -28,6 +28,7 @@ internal class ActivityMain : AppCompatActivity() {
     private lateinit var actionBarDrawerToggle : ActionBarDrawerToggle
     private lateinit var fragmentAlgorithmDescription: FragmentAlgorithmDescription
     private lateinit var fragmentCode: FragmentCode
+    private lateinit var imgBtnCodeDesc: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,12 +41,12 @@ internal class ActivityMain : AppCompatActivity() {
      */
     private fun initialize() {
         initializeGloballyUsedViews()
+        setImgBtnCodeDescBehaviour()
         initializeAlgorithmsList()
         setViewPager()
         setNavigationView()
         setFabBehaviour()
         setImgBtnShareBehaviour()
-        setImgBtnCodeBehaviour()
         setBottomNavigationView()
     }
 
@@ -54,6 +55,14 @@ internal class ActivityMain : AppCompatActivity() {
      */
     private fun initializeGloballyUsedViews() {
         viewPager = findViewById(R.id.a_m_view_pager)
+        imgBtnCodeDesc = findViewById(R.id.a_m_bab_img_btn_code_desc)
+    }
+
+    /**
+     * Sets image button with id a_m_bab_img_btn_code_desc behaviour
+     */
+    private fun setImgBtnCodeDescBehaviour() {
+        imgBtnCodeDesc.setOnClickListener {viewPager.currentItem = 1}
     }
 
     /**
@@ -87,11 +96,17 @@ internal class ActivityMain : AppCompatActivity() {
                 val bottomAppBar: Toolbar = this@ActivityMain.findViewById(R.id.a_m_bottom_app_bar)
                 if (position == 0) {
                     bottomAppBar.background =
-                            this@ActivityMain.resources.getDrawable(R.drawable.main_bab_background_white, this@ActivityMain.theme)
+                            this@ActivityMain.resources.getDrawable(R.drawable.main_bab_background_white,
+                                this@ActivityMain.theme)
+                    imgBtnCodeDesc.background = getDrawable(R.drawable.baseline_code_white_48dp)
+                    imgBtnCodeDesc.setOnClickListener {viewPager.currentItem = 1}
                 }
                 else {
                     bottomAppBar.background =
-                            this@ActivityMain.resources.getDrawable(R.drawable.main_bab_background_grey, this@ActivityMain.theme)
+                            this@ActivityMain.resources.getDrawable(R.drawable.main_bab_background_grey,
+                                this@ActivityMain.theme)
+                    imgBtnCodeDesc.background = getDrawable(R.drawable.baseline_description_white_48dp)
+                    imgBtnCodeDesc.setOnClickListener {viewPager.currentItem = 0}
                 }
             }
 
@@ -144,14 +159,6 @@ internal class ActivityMain : AppCompatActivity() {
         imgBtnCode.setOnClickListener {
             Toast.makeText(this, "This function is not implemented yet", Toast.LENGTH_LONG).show()
         }
-    }
-
-    /**
-     * Sets ImgBtn Code (placed on bottom_app_bar.xml) behaviour
-     */
-    private fun setImgBtnCodeBehaviour() {
-        val imgBtnCode: ImageButton = findViewById(R.id.a_m_bab_img_btn_code)
-        imgBtnCode.setOnClickListener {viewPager.currentItem = 1}
     }
 
     /**
