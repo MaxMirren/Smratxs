@@ -91,7 +91,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">@dimen/base_space</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">15.5sp</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:lineSpacingExtra">5dp</item>
     </style>
@@ -101,7 +101,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingStart">@dimen/base_space</item>
         <item name="android:paddingTop">@dimen/base_space</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">15.5sp</item>h
         <item name="android:textColor">@color/shadow</item>
         <item name="android:lineSpacingExtra">5dp</item>
     </style>

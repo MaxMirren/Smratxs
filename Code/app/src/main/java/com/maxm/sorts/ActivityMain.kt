@@ -7,6 +7,7 @@ import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.view.Gravity
 import android.widget.ImageButton
 import android.widget.Toast
 import com.maxm.sorts.data.Algorithm
@@ -39,12 +40,13 @@ internal class ActivityMain : AppCompatActivity() {
      */
     private fun initialize() {
         initializeGloballyUsedViews()
+        initializeAlgorithmsList()
         setViewPager()
+        setNavigationView()
         setFabBehaviour()
         setImgBtnShareBehaviour()
         setImgBtnCodeBehaviour()
         setBottomNavigationView()
-        initializeAlgorithmsList()
     }
 
     /**
@@ -52,6 +54,19 @@ internal class ActivityMain : AppCompatActivity() {
      */
     private fun initializeGloballyUsedViews() {
         viewPager = findViewById(R.id.a_m_view_pager)
+    }
+
+    /**
+     * Initializes list of algorithms places in strings.xml
+     */
+    private fun initializeAlgorithmsList() {
+        val namesArray = resources.getStringArray(R.array.sorts_names)
+        val descriptionArray = resources.getStringArray(R.array.sorts_description)
+        val debuggerArray = resources.getStringArray(R.array.sorts_debugs)
+        AlgorithmsListCreator(namesArray, descriptionArray, debuggerArray, R.string.category_0)
+        for (key in sortsCode.keys) {
+            sortsCode[key] = TextColorizer(sortsCode.getValue(key)).getColorizedText()
+        }
     }
 
     /**
@@ -83,6 +98,32 @@ internal class ActivityMain : AppCompatActivity() {
         })
         viewPager.adapter = customFragmentPageAdapter
         viewPager.currentItem = 0
+    }
+
+    /**
+     * Sets navigation view with a_m_nav behaviour
+     */
+    private fun setNavigationView() {
+        val navigationView: NavigationView = findViewById(R.id.a_m_nav)
+        for (i in 0 until Algorithm.List.getAlgorithmsCount() - 1) {
+            navigationView.menu.add(0, i, 0,
+                Algorithm.List.getFieldOfAlgorithmWithIndex(i, Algorithm.List.Fields.NAME))
+        }
+        navigationView.setNavigationItemSelectedListener { it ->
+            run {
+                val algorithmName = Algorithm.List.getFieldOfAlgorithmWithIndex(it.itemId, Algorithm.List.Fields.NAME)
+                val algorithmDescription =
+                    Algorithm.List.getFieldOfAlgorithmWithIndex(it.itemId, Algorithm.List.Fields.DESCRIPTION)
+                //val algorithmCode = sortsCode.getValue(algorithmName)
+                val algorithmDebugger =
+                    Algorithm.List.getFieldOfAlgorithmWithIndex(it.itemId, Algorithm.List.Fields.DEBUGGER)
+                fragmentAlgorithmDescription.setContent(algorithmName, algorithmDescription)
+                fragmentCode.setContent(algorithmName, algorithmDebugger)
+                val drawerLayout: DrawerLayout = this@ActivityMain.findViewById(R.id.a_m_lyt_drl)
+                drawerLayout.closeDrawer(Gravity.START)
+            }
+            false
+        }
     }
 
     /**
@@ -128,34 +169,5 @@ internal class ActivityMain : AppCompatActivity() {
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
     }
-
-    /**
-     * Initializes list of algorithms places in strings.xml
-     */
-    private fun initializeAlgorithmsList() {
-        val namesArray = resources.getStringArray(R.array.sorts_names)
-        val descriptionArray = resources.getStringArray(R.array.sorts_description)
-        val debuggerArray = resources.getStringArray(R.array.sorts_debugs)
-        AlgorithmsListCreator(namesArray, descriptionArray, debuggerArray, R.string.category_0)
-        for (key in sortsCode.keys) {
-            sortsCode[key] = TextColorizer(sortsCode.getValue(key)).getColorizedText()
-        }
-        val navigationView: NavigationView = findViewById(R.id.a_m_nav)
-        for (i in 0 until namesArray.size -1) {
-            navigationView.menu.add(0, i, 0, namesArray[i])
-        }
-        navigationView.setNavigationItemSelectedListener { it -> run {
-            val algorithmName = Algorithm.List.getFieldOfAlgorithmWithIndex(it.itemId, Algorithm.List.Fields.NAME)
-            val algorithmDescription = Algorithm.List.getFieldOfAlgorithmWithIndex(it.itemId, Algorithm.List.Fields.DESCRIPTION)
-            //val algorithmCode = sortsCode.getValue(algorithmName)
-            val algorithmDebugger = Algorithm.List.getFieldOfAlgorithmWithIndex(it.itemId, Algorithm.List.Fields.DEBUGGER)
-            fragmentAlgorithmDescription.setContent(algorithmName, algorithmDescription)
-            fragmentCode.setContent(algorithmName, algorithmDebugger)
-        }
-            true
-        }
-    }
-
-
 
 }

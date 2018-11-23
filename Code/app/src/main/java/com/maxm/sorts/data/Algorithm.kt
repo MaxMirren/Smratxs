@@ -22,14 +22,18 @@ internal data class Algorithm(private val id: Int,
             categories.add(resId)
         }
 
+        fun addAlgorithm(algorithm: Algorithm) {
+            list.add(algorithm)
+        }
+
+        fun getAlgorithmsCount(): Int {
+            return list.size
+        }
+
         @Suppress("UNUSED")
         fun getCategoryByIndex(index: Int) = categories[index]
 
         fun getCategoriesSize() = categories.size
-
-        fun addAlgorithm(algorithm: Algorithm) {
-            list.add(algorithm)
-        }
 
         @Suppress("UNUSED")
         fun getAllAlgorithmFieldsByIndex(index: Int) = list[index]

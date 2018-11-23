@@ -33,7 +33,6 @@ internal class FragmentCode : AbstractFragment() {
         lineCodeNumbered = thisObject.findViewById(R.id.f_code_txt_code_numbering)
         lineCodeNumbered.setFont(activity!!.assets, Font.LUCIDA_CONSOLE)
         val algorithmName = Algorithm.List.getFieldOfAlgorithmWithIndex(0, Algorithm.List.Fields.NAME)
-        val algorithmCode = sortsCode[algorithmName]!!
         val algorithmDebugger = Algorithm.List.getFieldOfAlgorithmWithIndex(0, Algorithm.List.Fields.DEBUGGER)
         setContent(algorithmName, algorithmDebugger)
     }

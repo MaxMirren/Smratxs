@@ -8,22 +8,6 @@ import android.text.Spanned
 internal class TextColorizer(@NonNull private val sourceString: String) {
 
     private lateinit var colorizedString: String
-    private val test = "while (i < int_array.length) {<br>" +
-            "                   &emsp;\'m\'<br>" +
-            "                   &emsp;\"has been started\"<br>" +
-            "                   &emsp;if (int_array[i] < int_array[i-1]) {<br>" +
-            "                        &emsp;&emsp;temp = int_array[i - 1];<br>" +
-            "                        &emsp;&emsp;'a'<br>" +
-            "                        &emsp;&emsp;int_array[i - 1] = int_array[i];<br>" +
-            "                        &emsp;&emsp;int_array[i] = temp;<br>" +
-            "                        &emsp;&emsp;i = 1;<br>" +
-            "                    &emsp;}<br>" +
-            "                    &emsp;else {<br>" +
-            "                        &emsp;&emsp;'x'<br>" +
-            "                        &emsp;&emsp;i++;<br>" +
-            "                    &emsp;}<br>" +
-            "                    &emsp;\"has been finished\"<br>" +
-            "                }"
 
     enum class Colors(val color: String) {
         KEY_WORDS("#FF6600"),
