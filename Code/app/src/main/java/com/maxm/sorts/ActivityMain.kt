@@ -17,6 +17,10 @@ import com.maxm.sorts.fragments.CustomFragmentPageAdapter
 import com.maxm.sorts.fragments.FragmentAlgorithmDescription
 import com.maxm.sorts.fragments.FragmentCode
 import com.maxm.sorts.utils.TextColorizer
+import android.text.method.TextKeyListener.clear
+import android.app.Activity
+import kotlin.system.exitProcess
+
 
 /**
  * This class represents and implements the logic of main layout.activity_main
@@ -34,6 +38,11 @@ internal class ActivityMain : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initialize()
+    }
+
+    override fun onBackPressed() {
+        finish()
+        exitProcess(0)
     }
 
     /**
@@ -129,7 +138,6 @@ internal class ActivityMain : AppCompatActivity() {
                 val algorithmName = Algorithm.List.getFieldOfAlgorithmWithIndex(it.itemId, Algorithm.List.Fields.NAME)
                 val algorithmDescription =
                     Algorithm.List.getFieldOfAlgorithmWithIndex(it.itemId, Algorithm.List.Fields.DESCRIPTION)
-                //val algorithmCode = sortsCode.getValue(algorithmName)
                 val algorithmDebugger =
                     Algorithm.List.getFieldOfAlgorithmWithIndex(it.itemId, Algorithm.List.Fields.DEBUGGER)
                 fragmentAlgorithmDescription.setContent(algorithmName, algorithmDescription)

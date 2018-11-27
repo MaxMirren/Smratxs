@@ -37,14 +37,14 @@ internal var sortsCode: HashMap<String, String> = hashMapOf(
             "&emsp;int i = start, j = end;<br>" +
             "&emsp;int stateElement = int_array[(i + j) / 2];<br>" +
             "&emsp;int temp;<br>" +
-            "&emsp;while (i <= j) {<br>" +
+            "&emsp;while (i &lt;= j) {<br>" +
             "&emsp;&emsp;while (int_array[i] < stateElement) {<br>" +
             "&emsp;&emsp;&emsp;i++;<br>" +
             "&emsp;&emsp;}<br>" +
             "&emsp;&emsp;while (int_array[j] > stateElement) {<br>" +
             "&emsp;&emsp;&emsp;j--;<br>" +
             "&emsp;&emsp;}<br>" +
-            "&emsp;&emsp;if (i <= j) {<br>" +
+            "&emsp;&emsp;if (i &lt;= j) {<br>" +
             "&emsp;&emsp;&emsp;temp = int_array[i];<br>" +
             "&emsp;&emsp;&emsp;int_array[i] = int_array[j];<br>" +
             "&emsp;&emsp;&emsp;int_array[j] = temp;<br>" +
