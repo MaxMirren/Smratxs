@@ -8,7 +8,9 @@ import android.view.ViewGroup
 
 internal abstract class AbstractFragment : Fragment(){
 
+    // Stores the link of current object to be used as this
     protected lateinit var thisObject: View
+    // Stores layout resource id
     protected abstract val layoutResInt: Int
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -17,5 +19,8 @@ internal abstract class AbstractFragment : Fragment(){
         return thisObject
     }
 
+    /**
+     * Initializes fragment views data and behaviour
+     */
     internal abstract fun initialize()
     }

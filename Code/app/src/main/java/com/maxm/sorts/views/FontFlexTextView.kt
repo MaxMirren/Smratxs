@@ -17,7 +17,13 @@ internal class FontFlexTextView : TextView {
 
     // Indicates whether this object is used as line numbering FontTextView or not
     var isLineNumbering = false
-    private set
+        private set
+    // Stores the line layout height of set line numbering FontFlexTextView object (isLineNumbering = true)
+    var layoutLineHeight: Int = 0
+        private set
+    // Stores the layout height of set line numbering FontFlexTextView object (isLineNumbering = true)
+    var layoutHeight: Int = 0
+        private set
 
     /**
      * Sets font for current object
@@ -39,6 +45,8 @@ internal class FontFlexTextView : TextView {
         val vto = fontFlexTextView.viewTreeObserver
         vto.addOnGlobalLayoutListener{
             val lines = fontFlexTextView.layout.lineCount
+            this@FontFlexTextView.layoutLineHeight = fontFlexTextView.lineHeight
+            this@FontFlexTextView.layoutHeight = fontFlexTextView.layout.height
             this@FontFlexTextView.text = ""
             if (this@FontFlexTextView.thisColorIsShadow()) {
                 var data = ""

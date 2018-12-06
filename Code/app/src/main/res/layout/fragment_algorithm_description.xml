@@ -24,7 +24,7 @@
 
         />
 
-        <com.maxm.sorts.views.JustifiedTextView
+        <com.maxm.sorts.views.JustifiedFontFlexTextView
                 android:id="@+id/f_desc_txt_algorithm_desc"
                 style="@style/SortsAlgorithmDescription"
                 android:text="@string/def_algorithm_description"

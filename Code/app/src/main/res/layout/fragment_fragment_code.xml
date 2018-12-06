@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <ScrollView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".fragments.FragmentCode"
-    >
-        <LinearLayout
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".fragments.FragmentCode"
+        android:id="@+id/f_code_scroll_v"
+>
+        <RelativeLayout
+                android:id="@+id/f_code_lyt_constraint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
         >
 
             <com.maxm.sorts.views.FontFlexTextView
@@ -17,27 +18,63 @@
                     style="@style/SortsAlgorithmName"
                     android:text="@string/def_algorithm_name"
                     android:layout_marginStart="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_alignParentTop="true"
+            />
+
+            <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/f_code_fab_resize"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:fabCustomSize="40dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/baseline_unfold_more_black_48dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    app:fabElevation="15dp"
+                    android:elevation="15dp"
+                    android:translationZ="15dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="300dp"
             />
 
             <android.support.v7.widget.CardView
+                    android:id="@+id/f_code_card_code"
                     style="@style/SortsCardView"
+                    android:layout_below="@id/f_code_txt_algorithm_name"
+                    android:layout_above="@id/f_code_card_debug"
             >
-                <com.maxm.sorts.views.FontFlexTextView
-                        android:id="@+id/f_code_txt_code"
-                        style="@style/SortsCardViewTextView"
-                        android:layout_marginStart="30dp"
-                />
+                <android.support.v4.widget.NestedScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                >
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                    >
+                        <com.maxm.sorts.views.FontFlexTextView
+                                android:id="@+id/f_code_txt_code"
+                                style="@style/SortsCardViewTextView"
+                                android:layout_toEndOf="@id/f_code_txt_code_numbering"
+                        />
 
-                <com.maxm.sorts.views.FontFlexTextView
-                        android:id="@+id/f_code_txt_code_numbering"
-                        style="@style/SortsTextViewCodeNumbering"
-                />
+                        <com.maxm.sorts.views.FontFlexTextView
+                                android:id="@+id/f_code_txt_code_numbering"
+                                style="@style/SortsTextViewCodeNumbering"
+                        />
+                    </RelativeLayout>
+
+                </android.support.v4.widget.NestedScrollView>
+
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
+                    android:id="@+id/f_code_card_debug"
                     style="@style/SortsCardView"
                     android:layout_height="250dp"
                     android:layout_marginTop="10dp"
+                    android:layout_alignTop="@id/f_code_fab_resize"
+
             >
                 <android.support.v4.widget.NestedScrollView
                         android:layout_width="match_parent"
@@ -51,5 +88,5 @@
                     />
                 </android.support.v4.widget.NestedScrollView>
             </android.support.v7.widget.CardView>
-        </LinearLayout>
+        </RelativeLayout>
     </ScrollView>

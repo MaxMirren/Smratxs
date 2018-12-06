@@ -45,6 +45,8 @@ internal class ActivityMain : AppCompatActivity() {
         exitProcess(0)
     }
 
+
+
     /**
      * Uses as menu to start up class init processes
      */
