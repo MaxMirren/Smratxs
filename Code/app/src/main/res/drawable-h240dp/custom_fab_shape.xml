@@ -13,7 +13,7 @@
             <shape android:shape="rectangle">
                 <corners android:radius="5dp"/>
                 <solid android:color="@color/colorAccent"/>
-                <size android:height="70dp" android:width="70dp"/>
+                <size android:height="37dp" android:width="37dp"/>
             </shape>
         </rotate>
     </item>

@@ -1,10 +1,11 @@
-package com.maxm.sorts.utils
+package com.maxm.sorts.fragments.code
 
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.ScrollView
+import com.maxm.sorts.views.WhiteGreyAccentToolbar
 
 /**
  * This class implements OnTouchListener to define view's behaviour
@@ -14,7 +15,9 @@ import android.widget.ScrollView
 class VerticalDrag(private val parentLayout: ViewGroup,
                    private val scrollView: ScrollView?,
                    private val topStub: Int,
-                   private val bottomStub: Int): View.OnTouchListener {
+                   private val bottomStub: Int,
+                   private val eachCardsHeight: Int,
+                   private val toolbar: WhiteGreyAccentToolbar): View.OnTouchListener {
 
     // Stores the difference between first y event coordinate value and topMargin value of view
     private var _yDelta: Int = 0
@@ -37,6 +40,12 @@ class VerticalDrag(private val parentLayout: ViewGroup,
                     layoutParams.topMargin = viewTopMargin
                 }
                 v.layoutParams = layoutParams
+                if (viewTopMargin < eachCardsHeight) {
+                    toolbar.setBottomAppBarBackgroundWhite(true)
+                }
+                else {
+                    toolbar.setBottomAppBarBackgroundWhite(false)
+                }
             }
         }
         parentLayout.invalidate()

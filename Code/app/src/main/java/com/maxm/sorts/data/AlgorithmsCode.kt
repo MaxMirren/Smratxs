@@ -23,7 +23,7 @@ internal var sortsCode: HashMap<String, String> = hashMapOf(
     "Bubble sort" to
             "int temp;<br>" +
             "for (int i = int_array.length - 1; i > 0; i--) {<br>" +
-            "&emsp;for (int j = 0; j <= i; j++) {<br>" +
+            "&emsp;for (int j = 0; j &lt;= i; j++) {<br>" +
             "&emsp;&emsp;if (int_array[i-1] > int_array[i]) {<br>" +
             "&emsp;&emsp;&emsp;temp = int_array[i - 1];<br>" +
             "&emsp;&emsp;&emsp;int_array[i - 1] = int_array[i];<br>" +
@@ -65,9 +65,9 @@ internal var sortsCode: HashMap<String, String> = hashMapOf(
 
     "Cocktail Shaker sort"  to
             "int temp, left = 0, right = int_array.length - 1;<br>" +
-            "while (left <= right) {<br>" +
+            "while (left &lt;= right) {<br>" +
             "&emsp;for (int i = left; i < right; i++) {<br>" +
-            "&emsp;&emsp;if (int_array[i+1] < int_array[i]) {<br>" +
+            "&emsp;&emsp;if (int_array[i +1 ] < int_array[i]) {<br>" +
             "&emsp;&emsp;&emsp;temp = int_array[i + 1];<br>" +
             "&emsp;&emsp;&emsp;int_array[i + 1] = int_array[i];<br>" +
             "&emsp;&emsp;&emsp;int_array[i] = temp;<br>" +
@@ -75,7 +75,7 @@ internal var sortsCode: HashMap<String, String> = hashMapOf(
             "&emsp;}<br>" +
             "&emsp;right--;<br>" +
             "&emsp;for (int j = right; j > left; j--) {<br>" +
-            "&emsp;&emsp;if (int_array[j-1] > int_array[j]) {<br>" +
+            "&emsp;&emsp;if (int_array[j - 1] > int_array[j]) {<br>" +
             "&emsp;&emsp;&emsp;temp = int_array[j - 1];<br>" +
             "&emsp;&emsp;&emsp;int_array[j - 1] = int_array[j];<br>" +
             "&emsp;&emsp;&emsp;int_array[j] = temp;<br>" +
@@ -91,7 +91,7 @@ internal var sortsCode: HashMap<String, String> = hashMapOf(
             "while (!noChanges && (space > 0)) {<br>" +
             "&emsp;noChanges = true;<br>" +
             "&emsp;for (int i = 0; i + space < int_array.length; i++) {<br>" +
-            "&emsp;&emsp;if (int_array[i] > int_array[i+space]) {<br>" +
+            "&emsp;&emsp;if (int_array[i] > int_array[i + space]) {<br>" +
             "&emsp;&emsp;&emsp;temp = int_array[i + space];<br>" +
             "&emsp;&emsp;&emsp;int_array[i + space] = int_array[i];<br>" +
             "&emsp;&emsp;&emsp;int_array[i] = temp;<br>" +

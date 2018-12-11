@@ -14,9 +14,12 @@ internal class TextColorizer(@NonNull private val sourceString: String) {
 
     enum class Reserved(val text: String, val htmlText: String) {
         COMMA(",", "<font color='" + Colors.RESERVED.hexCode + "'>,</font>"),
-        //SEMICOLON(";", "<font color='" + Colors.KEY_WORDS.hexCode + "'>;</font>"),
         VAR("var", "<font color='" + Colors.RESERVED.hexCode + "'>var</font>"),
-        VAL("val", "<font color='" + Colors.RESERVED.hexCode + "'>val</font>"),
+        TRUE("true", "<font color='" + Colors.RESERVED.hexCode + "'>true</font>"),
+        FALSE("false", "<font color='" + Colors.RESERVED.hexCode + "'>false</font>"),
+        CONTINUE("continue", "<font color='" + Colors.RESERVED.hexCode + "'>continue</font>"),
+        BREAK("break", "<font color='" + Colors.RESERVED.hexCode + "'>break</font>"),
+        PRIVATE("private", "<font color='" + Colors.RESERVED.hexCode + "'>private</font>"),
         FOR("for", "<font color='" + Colors.RESERVED.hexCode + "'>for</font>"),
         WHILE("while", "<font color='" + Colors.RESERVED.hexCode + "'>while</font>"),
         IF("if", "<font color='" + Colors.RESERVED.hexCode + "'>if</font>"),
@@ -37,9 +40,13 @@ internal class TextColorizer(@NonNull private val sourceString: String) {
         colorizeNumbers()
         colorizeAllStrings()
         colorizedString = colorizedString
+            .replace(Reserved.PRIVATE.text, Reserved.PRIVATE.htmlText)
             .replace(Reserved.COMMA.text, Reserved.COMMA.htmlText)
+            .replace(Reserved.TRUE.text, Reserved.TRUE.htmlText)
+            .replace(Reserved.FALSE.text, Reserved.FALSE.htmlText)
+            .replace(Reserved.BREAK.text, Reserved.BREAK.htmlText)
+            .replace(Reserved.CONTINUE.text, Reserved.CONTINUE.htmlText)
             .replace(Reserved.VAR.text, Reserved.VAR.htmlText)
-            .replace(Reserved.VAL.text, Reserved.VAL.htmlText)
             .replace(Reserved.FOR.text, Reserved.FOR.htmlText)
             .replace(Reserved.IF.text, Reserved.IF.htmlText)
             .replace(Reserved.WHILE.text, Reserved.WHILE.htmlText)
@@ -91,10 +98,17 @@ internal class TextColorizer(@NonNull private val sourceString: String) {
     private fun colorizeNumbers() {
         var i = 0
         while (i < colorizedString.length) {
+            var startIndex: Int
+            var endIndex: Int
             val charAtI = colorizedString[i]
             if (charAtI.isDigit()) {
-                val replacement = getColorizedStringOrChar(charAtI.toString(), Colors.NUMBERS)
-                colorizedString = colorizedString.replaceRange(i, i + 1, replacement)
+                startIndex = i
+                endIndex = i + 1
+                while (colorizedString[endIndex].isDigit() or (colorizedString[endIndex] == '.')) {
+                    endIndex++
+                }
+                val replacement = getColorizedStringOrChar(colorizedString.substring(startIndex, endIndex), Colors.NUMBERS)
+                colorizedString = colorizedString.replaceRange(startIndex, endIndex, replacement)
                 i += (replacement.length + 1)
                 continue
             }

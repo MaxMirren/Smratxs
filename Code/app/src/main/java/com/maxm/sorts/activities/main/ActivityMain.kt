@@ -1,4 +1,4 @@
-package com.maxm.sorts
+package com.maxm.sorts.activities.main
 
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -11,28 +11,26 @@ import android.view.Gravity
 import android.widget.ImageButton
 import android.widget.Toast
 import com.maxm.sorts.data.Algorithm
-import com.maxm.sorts.data.AlgorithmsListCreator
-import com.maxm.sorts.data.sortsCode
 import com.maxm.sorts.fragments.CustomFragmentPageAdapter
 import com.maxm.sorts.fragments.FragmentAlgorithmDescription
-import com.maxm.sorts.fragments.FragmentCode
-import com.maxm.sorts.utils.TextColorizer
-import android.text.method.TextKeyListener.clear
-import android.app.Activity
+import com.maxm.sorts.fragments.code.FragmentCode
+import com.maxm.sorts.R
+import com.maxm.sorts.views.WhiteGreyAccentToolbar
 import kotlin.system.exitProcess
-
 
 /**
  * This class represents and implements the logic of main layout.activity_main
  * @author MaxMirren
  */
-internal class ActivityMain : AppCompatActivity() {
+class ActivityMain : AppCompatActivity() {
 
+    private lateinit var mainPresenter: MainPresenter
     private lateinit var viewPager: ViewPager
     private lateinit var actionBarDrawerToggle : ActionBarDrawerToggle
     private lateinit var fragmentAlgorithmDescription: FragmentAlgorithmDescription
     private lateinit var fragmentCode: FragmentCode
     private lateinit var imgBtnCodeDesc: ImageButton
+    private lateinit var bottomAppBar: WhiteGreyAccentToolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,15 +43,14 @@ internal class ActivityMain : AppCompatActivity() {
         exitProcess(0)
     }
 
-
-
     /**
      * Uses as menu to start up class init processes
      */
     private fun initialize() {
         initializeGloballyUsedViews()
+        mainPresenter = MainPresenter(this)
         setImgBtnCodeDescBehaviour()
-        initializeAlgorithmsList()
+        mainPresenter.initializeAlgorithmsList()
         setViewPager()
         setNavigationView()
         setFabBehaviour()
@@ -77,25 +74,14 @@ internal class ActivityMain : AppCompatActivity() {
     }
 
     /**
-     * Initializes list of algorithms places in strings.xml
-     */
-    private fun initializeAlgorithmsList() {
-        val namesArray = resources.getStringArray(R.array.sorts_names)
-        val descriptionArray = resources.getStringArray(R.array.sorts_description)
-        val debuggerArray = resources.getStringArray(R.array.sorts_debugs)
-        AlgorithmsListCreator(namesArray, descriptionArray, debuggerArray, R.string.category_0)
-        for (key in sortsCode.keys) {
-            sortsCode[key] = TextColorizer(sortsCode.getValue(key)).getColorizedText()
-        }
-    }
-
-    /**
      * Sets view pager id.a_m_view_pager controls
      */
     private fun setViewPager() {
         val customFragmentPageAdapter = CustomFragmentPageAdapter(supportFragmentManager!!)
         fragmentAlgorithmDescription = FragmentAlgorithmDescription()
         fragmentCode = FragmentCode()
+        bottomAppBar = this@ActivityMain.findViewById(R.id.a_m_bottom_app_bar)
+        fragmentCode.setMainToolbar(bottomAppBar)
         customFragmentPageAdapter.setFragmentList(arrayListOf(fragmentAlgorithmDescription, fragmentCode))
         viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
 
@@ -104,18 +90,13 @@ internal class ActivityMain : AppCompatActivity() {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
             override fun onPageSelected(position: Int) {
-                val bottomAppBar: Toolbar = this@ActivityMain.findViewById(R.id.a_m_bottom_app_bar)
                 if (position == 0) {
-                    bottomAppBar.background =
-                            this@ActivityMain.resources.getDrawable(R.drawable.main_bab_background_white,
-                                this@ActivityMain.theme)
+                    bottomAppBar.setBottomAppBarBackgroundWhite(true)
                     imgBtnCodeDesc.background = getDrawable(R.drawable.baseline_code_white_48dp)
                     imgBtnCodeDesc.setOnClickListener {viewPager.currentItem = 1}
                 }
                 else {
-                    bottomAppBar.background =
-                            this@ActivityMain.resources.getDrawable(R.drawable.main_bab_background_grey,
-                                this@ActivityMain.theme)
+                    bottomAppBar.setBottomAppBarBackgroundWhite(false)
                     imgBtnCodeDesc.background = getDrawable(R.drawable.baseline_description_white_48dp)
                     imgBtnCodeDesc.setOnClickListener {viewPager.currentItem = 0}
                 }
@@ -131,10 +112,7 @@ internal class ActivityMain : AppCompatActivity() {
      */
     private fun setNavigationView() {
         val navigationView: NavigationView = findViewById(R.id.a_m_nav)
-        for (i in 0 until Algorithm.List.getAlgorithmsCount() - 1) {
-            navigationView.menu.add(0, i, 0,
-                Algorithm.List.getFieldOfAlgorithmWithIndex(i, Algorithm.List.Fields.NAME))
-        }
+        mainPresenter.addAllItemsToNavigationView(navigationView)
         navigationView.setNavigationItemSelectedListener { it ->
             run {
                 val algorithmName = Algorithm.List.getFieldOfAlgorithmWithIndex(it.itemId, Algorithm.List.Fields.NAME)

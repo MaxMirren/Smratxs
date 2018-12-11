@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-internal abstract class AbstractFragment : Fragment(){
+abstract class AbstractFragment : Fragment(){
 
     // Stores the link of current object to be used as this
     protected lateinit var thisObject: View

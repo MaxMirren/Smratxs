@@ -1,26 +1,27 @@
-package com.maxm.sorts.fragments
+package com.maxm.sorts.fragments.code
 
 import android.os.Build
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.CardView
 import android.text.Html
 import android.text.Spanned
-import android.util.DisplayMetrics
 import android.widget.RelativeLayout
 import android.widget.ScrollView
 import android.widget.Toast
 import com.maxm.sorts.R
-import com.maxm.sorts.data.Algorithm
 import com.maxm.sorts.data.sortsCode
+import com.maxm.sorts.fragments.AbstractFragment
 import com.maxm.sorts.views.Font
 import com.maxm.sorts.views.FontFlexTextView
 import com.maxm.sorts.utils.TextColorizer
-import com.maxm.sorts.utils.VerticalDrag
+import com.maxm.sorts.views.WhiteGreyAccentToolbar
 
-internal class FragmentCode : AbstractFragment() {
+class FragmentCode : AbstractFragment() {
 
     // Links to fragment_fragment_code layout
     override val layoutResInt: Int = R.layout.fragment_fragment_code
+    // Links to presenter which manages this fragment and FCodeModel
+    private lateinit var fCodePresenter: FCodePresenter
     // Links to f_code_txt_algorithm_name Font Flex Text View
     private lateinit var textViewAlgorithmName: FontFlexTextView
     // Links to f_code_txt_code Font Flex Text View
@@ -35,14 +36,24 @@ internal class FragmentCode : AbstractFragment() {
     private lateinit var fabResize: FloatingActionButton
     // Links to f_code_card_debug Card View
     private lateinit var cardDebug: CardView
+    // Links to ActivityMain WhiteGreyAccentToolbar object
+    private lateinit var mainToolbar: WhiteGreyAccentToolbar
 
     /**
      * Initializes fragment views data and behaviour
      */
     override fun initialize() {
         connectVarsToViews()
+        fCodePresenter = FCodePresenter(this, thisObject)
         setTextViewsParameters()
         setProperHeightsForCards()
+    }
+
+    /**
+     * Initializes mainToolbar global var with link to ActivityMain WhiteGreyAccentToolbar object
+     */
+    internal fun setMainToolbar(toolbar: WhiteGreyAccentToolbar) {
+        mainToolbar = toolbar
     }
 
     /**
@@ -66,9 +77,7 @@ internal class FragmentCode : AbstractFragment() {
         textViewCode.setFont(activity!!.assets, Font.LUCIDA_CONSOLE)
         textViewDebugger.setFont(activity!!.assets, Font.SEGOEUI_REGULAR)
         textViewLineCodeNumbered.setFont(activity!!.assets, Font.LUCIDA_CONSOLE)
-        val algorithmName = Algorithm.List.getFieldOfAlgorithmWithIndex(0, Algorithm.List.Fields.NAME)
-        val algorithmDebugger = Algorithm.List.getFieldOfAlgorithmWithIndex(0, Algorithm.List.Fields.DEBUGGER)
-        setContent(algorithmName, algorithmDebugger)
+        fCodePresenter.setContentOfTheFirstAlgorithm()
     }
 
     /**
@@ -106,40 +115,33 @@ internal class FragmentCode : AbstractFragment() {
     private fun setProperHeightsForCards() {
         thisObject.post {
             val fragmentHeight = thisObject.measuredHeight
-            val dpSpaceInPx = convertDpToPixel(63f)
+            val dpSpaceInPx = fCodePresenter.getDPInPX(63f)
             val eachCardsHeight = ((fragmentHeight - dpSpaceInPx) / 2).toInt()
             val maxCodeCardHeightInPx = textViewLineCodeNumbered.layoutHeight
-            val threeCodeLinesHeightInPx = (textViewLineCodeNumbered.layoutLineHeight * 3.2).toInt()
+            val lineHeightInPx = textViewLineCodeNumbered.layoutLineHeight
+            val threeCodeLinesHeightInPx = (lineHeightInPx * 3.2).toInt()
             val topYOfCodeCardView = cardCode.y.toInt()
             val layoutParams = fabResize.layoutParams as RelativeLayout.LayoutParams
-            layoutParams.topMargin = convertDpToPixel(54f).toInt() + eachCardsHeight
+            layoutParams.topMargin = fCodePresenter.getDPInPX(54f).toInt() + eachCardsHeight
             fabResize.layoutParams = layoutParams
             cardDebug.layoutParams.height = eachCardsHeight
             val resizeFabTopStub = topYOfCodeCardView + threeCodeLinesHeightInPx
             val resizeFabBottomStub = if (eachCardsHeight > maxCodeCardHeightInPx) {
-                topYOfCodeCardView + eachCardsHeight
+                topYOfCodeCardView + eachCardsHeight - (lineHeightInPx * 0.7).toInt()
             }
             else {
-                topYOfCodeCardView + maxCodeCardHeightInPx
+                topYOfCodeCardView + maxCodeCardHeightInPx + lineHeightInPx
             }
-            setFabResizeBehaviour(resizeFabTopStub, resizeFabBottomStub)
+            setFabResizeBehaviour(resizeFabTopStub, resizeFabBottomStub, eachCardsHeight)
         }
     }
 
     /**
-     * Converts dp to px
-     * @param dp dp value to be converted to px value in float
-     * @return Float value of converted px
-     */
-    private fun convertDpToPixel(dp: Float): Float {
-        val metrics = context!!.resources.displayMetrics
-        return dp * (metrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
-    }
-
-    /**
      * Sets f_code_fab_resize behaviour with onTouchListener
+     * @param topStub - top stub for movement and resizing
+     * @param bottomStub - bottom stub for movement and resizing
      */
-    private fun setFabResizeBehaviour(topStub: Int, bottomStub: Int) {
+    private fun setFabResizeBehaviour(topStub: Int, bottomStub: Int, eachCardsHeight: Int) {
         fabResize.setOnClickListener {
             Toast.makeText(
                 this@FragmentCode.context, resources.getText(R.string.f_code_fab_resize_onclick),
@@ -148,6 +150,15 @@ internal class FragmentCode : AbstractFragment() {
         }
         val scrollView: ScrollView = thisObject.findViewById(R.id.f_code_scroll_v)
         val relativeLayout: RelativeLayout = thisObject.findViewById(R.id.f_code_lyt_constraint)
-        fabResize.setOnTouchListener(VerticalDrag(relativeLayout, scrollView, topStub, bottomStub))
+        fabResize.setOnTouchListener(
+            VerticalDrag(
+                relativeLayout,
+                scrollView,
+                topStub,
+                bottomStub,
+                eachCardsHeight,
+                mainToolbar
+            )
+        )
     }
 }
