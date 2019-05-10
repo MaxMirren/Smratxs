@@ -1,8 +1,8 @@
 package com.maxm.sorts.fragments.code
 
 import android.os.Build
-import android.support.design.widget.FloatingActionButton
-import android.support.v7.widget.CardView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import androidx.cardview.widget.CardView
 import android.text.Html
 import android.text.Spanned
 import android.widget.RelativeLayout
@@ -31,11 +31,11 @@ class FragmentCode : AbstractFragment() {
     // Links to f_code_txt_code_numbering Font Flex Text View
     private lateinit var textViewLineCodeNumbered: FontFlexTextView
     // Links to f_code_card_code Card View
-    private lateinit var cardCode: CardView
+    private lateinit var cardCode: androidx.cardview.widget.CardView
     // Links to f_code_fab_resize Floating Action Button
     private lateinit var fabResize: FloatingActionButton
     // Links to f_code_card_debug Card View
-    private lateinit var cardDebug: CardView
+    private lateinit var cardDebug: androidx.cardview.widget.CardView
     // Links to ActivityMain WhiteGreyAccentToolbar object
     private lateinit var mainToolbar: WhiteGreyAccentToolbar
 

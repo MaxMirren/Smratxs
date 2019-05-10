@@ -22,7 +22,7 @@
                     android:layout_alignParentTop="true"
             />
 
-            <android.support.design.widget.FloatingActionButton
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/f_code_fab_resize"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
@@ -38,13 +38,13 @@
                     android:layout_marginTop="300dp"
             />
 
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                     android:id="@+id/f_code_card_code"
                     style="@style/SortsCardView"
                     android:layout_below="@id/f_code_txt_algorithm_name"
                     android:layout_above="@id/f_code_card_debug"
             >
-                <android.support.v4.widget.NestedScrollView
+                <androidx.core.widget.NestedScrollView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                 >
@@ -64,11 +64,11 @@
                         />
                     </RelativeLayout>
 
-                </android.support.v4.widget.NestedScrollView>
+                </androidx.core.widget.NestedScrollView>
 
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                     android:id="@+id/f_code_card_debug"
                     style="@style/SortsCardView"
                     android:layout_height="250dp"
@@ -76,7 +76,7 @@
                     android:layout_alignTop="@id/f_code_fab_resize"
 
             >
-                <android.support.v4.widget.NestedScrollView
+                <androidx.core.widget.NestedScrollView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
@@ -86,7 +86,7 @@
                             android:text="@string/f_code_c_debugger_code_txt_hint"
                             android:textColor="@color/shadow"
                     />
-                </android.support.v4.widget.NestedScrollView>
-            </android.support.v7.widget.CardView>
+                </androidx.core.widget.NestedScrollView>
+            </androidx.cardview.widget.CardView>
         </RelativeLayout>
     </ScrollView>

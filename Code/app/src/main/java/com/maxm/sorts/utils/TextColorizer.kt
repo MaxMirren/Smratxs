@@ -1,6 +1,6 @@
 package com.maxm.sorts.utils
 
-import android.support.annotation.NonNull
+import androidx.annotation.NonNull
 
 internal class TextColorizer(@NonNull private val sourceString: String) {
 

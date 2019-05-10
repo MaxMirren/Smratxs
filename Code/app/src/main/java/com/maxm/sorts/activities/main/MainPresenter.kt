@@ -1,6 +1,6 @@
 package com.maxm.sorts.activities.main
 
-import android.support.design.widget.NavigationView
+import com.google.android.material.navigation.NavigationView
 
 class MainPresenter(private val view: ActivityMain) {
 

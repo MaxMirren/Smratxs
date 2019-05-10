@@ -1,6 +1,6 @@
 package com.maxm.sorts.data
 
-import android.support.annotation.StringRes
+import androidx.annotation.StringRes
 import java.util.*
 
 internal data class Algorithm(private val id: Int,

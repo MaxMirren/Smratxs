@@ -7,7 +7,7 @@
         android:id="@+id/a_m_bottom_app_bar"
         android:background="@drawable/main_bab_background_white">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/toolbar_height">
 
@@ -35,5 +35,5 @@
                 app:layout_constraintHorizontal_bias="1.0"
         />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </com.maxm.sorts.views.WhiteGreyAccentToolbar>

@@ -1,12 +1,12 @@
 package com.maxm.sorts.activities.main
 
 import android.os.Bundle
-import android.support.design.widget.NavigationView
-import android.support.v4.view.ViewPager
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
+import com.google.android.material.navigation.NavigationView
+import androidx.viewpager.widget.ViewPager
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import android.view.Gravity
 import android.widget.ImageButton
 import android.widget.Toast
@@ -25,7 +25,7 @@ import kotlin.system.exitProcess
 class ActivityMain : AppCompatActivity() {
 
     private lateinit var mainPresenter: MainPresenter
-    private lateinit var viewPager: ViewPager
+    private lateinit var viewPager: androidx.viewpager.widget.ViewPager
     private lateinit var actionBarDrawerToggle : ActionBarDrawerToggle
     private lateinit var fragmentAlgorithmDescription: FragmentAlgorithmDescription
     private lateinit var fragmentCode: FragmentCode
@@ -83,7 +83,7 @@ class ActivityMain : AppCompatActivity() {
         bottomAppBar = this@ActivityMain.findViewById(R.id.a_m_bottom_app_bar)
         fragmentCode.setMainToolbar(bottomAppBar)
         customFragmentPageAdapter.setFragmentList(arrayListOf(fragmentAlgorithmDescription, fragmentCode))
-        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        viewPager.addOnPageChangeListener(object : androidx.viewpager.widget.ViewPager.OnPageChangeListener {
 
             override fun onPageScrollStateChanged(state: Int) {}
 
@@ -122,7 +122,7 @@ class ActivityMain : AppCompatActivity() {
                     Algorithm.List.getFieldOfAlgorithmWithIndex(it.itemId, Algorithm.List.Fields.DEBUGGER)
                 fragmentAlgorithmDescription.setContent(algorithmName, algorithmDescription)
                 fragmentCode.setContent(algorithmName, algorithmDebugger)
-                val drawerLayout: DrawerLayout = this@ActivityMain.findViewById(R.id.a_m_lyt_drl)
+                val drawerLayout: androidx.drawerlayout.widget.DrawerLayout = this@ActivityMain.findViewById(R.id.a_m_lyt_drl)
                 drawerLayout.closeDrawer(Gravity.START)
             }
             false
@@ -153,7 +153,7 @@ class ActivityMain : AppCompatActivity() {
      * Sets navigation drawer availability and content
      */
     private fun setBottomNavigationView() {
-        val drawerLayout: DrawerLayout = findViewById(R.id.a_m_lyt_drl)
+        val drawerLayout: androidx.drawerlayout.widget.DrawerLayout = findViewById(R.id.a_m_lyt_drl)
         val toolbar: Toolbar = findViewById(R.id.a_m_bottom_app_bar)
         setSupportActionBar(toolbar)
         actionBarDrawerToggle =

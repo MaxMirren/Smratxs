@@ -1,10 +1,10 @@
 package com.maxm.sorts.fragments
 
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import java.util.*
 
-internal class CustomFragmentPageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+internal class CustomFragmentPageAdapter(fm: androidx.fragment.app.FragmentManager) : androidx.fragment.app.FragmentPagerAdapter(fm) {
 
     private lateinit var fragmentList: ArrayList<AbstractFragment>
 

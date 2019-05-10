@@ -1,6 +1,6 @@
 package com.maxm.sorts.activities.main
 
-import android.support.design.widget.NavigationView
+import com.google.android.material.navigation.NavigationView
 import com.maxm.sorts.R
 import com.maxm.sorts.data.Algorithm
 import com.maxm.sorts.data.AlgorithmsListCreator
