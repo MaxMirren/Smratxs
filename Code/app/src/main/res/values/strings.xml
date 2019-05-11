@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Sorts</string>
+    <string name="app_name">Algolearn</string>
     <string name="f_code_fab_resize_onclick">Drag it to resize code frame</string>
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
@@ -16,4 +16,9 @@
     <string name="a_m_nd_m1_titleSample2">Algorithm name 2</string>
     <string name="a_m_nd_m1_titleSample3">Algorithm name 3</string>
     <string name="f_code_c_debugger_code_txt_hint">Run code to see the log&#8230;</string>
+
+    <string name="f_desc_title_desc">DESCRIPTION</string>
+    <string name="f_desc_title_characteristics">CHARACTERISTICS</string>
+    <string name="f_desc_title_demonstration">DEMONSTRATION</string>
+    <string name="f_code_debug_title">CODE / DEBUG</string>
 </resources>

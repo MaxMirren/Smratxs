@@ -30,7 +30,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-    api 'com.google.android.material:material:1.0.0'
+    api 'com.google.android.material:material:1.1.0-alpha06'
     api 'com.uncopt:android.justified:1.0'
     api 'com.robertlevonyan.view:CustomFloatingActionButton:2.1.1'
 }

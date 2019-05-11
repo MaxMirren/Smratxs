@@ -13,13 +13,10 @@
                 android:layout_height="wrap_content"
         >
 
-            <com.maxm.sorts.views.FontFlexTextView
+            <com.maxm.algolearn.views.custom.FontFlexTextView
                     android:id="@+id/f_code_txt_algorithm_name"
-                    style="@style/SortsAlgorithmName"
-                    android:text="@string/def_algorithm_name"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginBottom="15dp"
-                    android:layout_alignParentTop="true"
+                    style="@style/SortsTitle"
+                    android:text="@string/f_code_debug_title"
             />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -29,13 +26,13 @@
                     app:fabCustomSize="40dp"
                     android:scaleType="fitXY"
                     android:src="@mipmap/baseline_unfold_more_black_48dp"
-                    android:focusable="true"
                     android:focusableInTouchMode="true"
                     app:fabElevation="15dp"
                     android:elevation="15dp"
                     android:translationZ="15dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="300dp"
+                    app:backgroundTint="@color/colorAccent"
             />
 
             <androidx.cardview.widget.CardView
@@ -52,13 +49,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                     >
-                        <com.maxm.sorts.views.FontFlexTextView
+                        <com.maxm.algolearn.views.custom.FontFlexTextView
                                 android:id="@+id/f_code_txt_code"
                                 style="@style/SortsCardViewTextView"
                                 android:layout_toEndOf="@id/f_code_txt_code_numbering"
                         />
 
-                        <com.maxm.sorts.views.FontFlexTextView
+                        <com.maxm.algolearn.views.custom.FontFlexTextView
                                 android:id="@+id/f_code_txt_code_numbering"
                                 style="@style/SortsTextViewCodeNumbering"
                         />
@@ -80,7 +77,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                    <com.maxm.sorts.views.FontFlexTextView
+                    <com.maxm.algolearn.views.custom.FontFlexTextView
                             android:id="@+id/f_code_txt_debugger"
                             style="@style/SortsCardViewTextView"
                             android:text="@string/f_code_c_debugger_code_txt_hint"

@@ -2,17 +2,17 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
             android:gravity="center"
-            android:top="@dimen/fab_width_height"
-            android:bottom="@dimen/fab_width_height"
-            android:left="@dimen/fab_width_height"
-            android:right="@dimen/fab_width_height"
+            android:top="46dp"
+            android:bottom="46dp"
+            android:left="46dp"
+            android:right="46dp"
     >
         <rotate android:toDegrees="45"
                 android:fromDegrees="45">
             <shape android:shape="rectangle">
                 <corners android:radius="5dp"/>
                 <solid android:color="@color/colorAccent"/>
-                <size android:height="70dp" android:width="70dp"/>
+                <size android:height="46dp" android:width="46dp"/>
             </shape>
         </rotate>
     </item>

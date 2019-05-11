@@ -14,19 +14,18 @@
     </style>
 
     <style name="SortsFAB" parent="Base.Widget.AppCompat.ImageButton">
-        <item name="android:layout_width">70dp</item>
-        <item name="android:layout_height">70dp</item>
-        <item name="android:background">@drawable/custom_fab_shape</item>
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">60dp</item>
         <item name="android:src">@drawable/baseline_play_arrow_black_48dp</item>
         <item name="android:padding">15dp</item>
-        <item name="android:scaleType">fitCenter</item>
-        <item name="android:layout_marginBottom">75dp</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:layout_marginBottom">65dp</item>
     </style>
 
     <style name="SortsToolbarImgBtn" parent="Base.Widget.AppCompat.ImageButton">
-        <item name="android:layout_width">@dimen/toolbar_icon_width_height_spacing</item>
-        <item name="android:layout_height">@dimen/toolbar_icon_width_height_spacing</item>
-        <item name="android:layout_marginEnd">@dimen/toolbar_icon_width_height_spacing</item>
+        <item name="android:layout_width">@dimen/normal_space</item>
+        <item name="android:layout_height">@dimen/normal_space</item>
+        <item name="android:layout_marginEnd">@dimen/normal_space</item>
     </style>
 
     <style name="SortsNavigationView">
@@ -37,19 +36,38 @@
         <item name="android:layout_marginBottom">@dimen/toolbar_height</item>
     </style>
 
+    <style name="SortsNavigationViewTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/almostWhite</item>
+        <item name="android:layout_gravity">start</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="SortsNavigationViewName">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">start</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+
+
     <style name="SortsNavigationViewHeaderTitle" parent="TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">23sp</item>
         <item name="android:textColor">@color/colorPrimary</item>
-        <item name="android:layout_marginStart">@dimen/toolbar_icon_width_height_spacing</item>
+        <item name="android:layout_marginStart">@dimen/normal_space</item>
     </style>
 
     <style name="SortsNavigationViewHeaderTitleIcon">
-        <item name="android:layout_width">@dimen/toolbar_icon_width_height_spacing</item>
-        <item name="android:layout_height">@dimen/toolbar_icon_width_height_spacing</item>
-        <item name="android:layout_marginStart">@dimen/toolbar_icon_width_height_spacing</item>
-        <item name="android:layout_marginEnd">@dimen/toolbar_icon_width_height_spacing</item>
+        <item name="android:layout_width">@dimen/normal_space</item>
+        <item name="android:layout_height">@dimen/normal_space</item>
+        <item name="android:layout_marginStart">@dimen/normal_space</item>
+        <item name="android:layout_marginEnd">@dimen/normal_space</item>
         <item name="android:background">@drawable/baseline_info_black_48dp</item>
     </style>
 
@@ -64,17 +82,17 @@
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
-    <style name="SortsAlgorithmDescription" parent="TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
+    <style name="SortsAlgorithmText" parent="TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:layout_marginBottom">45dp</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:lineSpacingExtra">5dp</item>
-        <item name="android:paddingStart">20dp</item>
-        <item name="android:paddingEnd">20dp</item>
+        <item name="android:paddingStart">@dimen/normal_space</item>
+        <item name="android:paddingEnd">@dimen/normal_space</item>
         <item name="android:textAlignment">textStart</item>
-        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="SortsCardView">
@@ -106,5 +124,15 @@
         <item name="android:lineSpacingExtra">5dp</item>
     </style>
 
-
+    <style name="SortsTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:layout_alignParentStart">true</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:layout_marginBottom">12dp</item>
+        <item name="android:layout_marginStart">@dimen/normal_space</item>
+    </style>
 </resources>

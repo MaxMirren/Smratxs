@@ -7,28 +7,41 @@
         xmlns:tools="http://schemas.android.com/tools"
         tools:context=".fragments.FragmentAlgorithmDescription">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+    >
 
-        <com.maxm.sorts.views.FontFlexTextView
-                android:id="@+id/f_desc_txt_algorithm_name"
-                style="@style/SortsAlgorithmName"
-                android:text="@string/def_algorithm_name"
+        <com.maxm.algolearn.views.custom.FontFlexTextView
+                android:id="@+id/f_desc_v_txt_description_title_desc"
+                style="@style/SortsTitle"
+                android:text="@string/f_desc_title_desc"
+        />
+
+        <com.maxm.algolearn.views.custom.JustifiedFontFlexTextView
+                android:id="@+id/f_desc_v_txt_description"
+                style="@style/SortsAlgorithmText"
+                android:text="@string/def_algorithm_description"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintVertical_bias="0"
-
         />
 
-        <com.maxm.sorts.views.JustifiedFontFlexTextView
-                android:id="@+id/f_desc_txt_algorithm_desc"
-                style="@style/SortsAlgorithmDescription"
+        <com.maxm.algolearn.views.custom.FontFlexTextView
+                android:id="@+id/f_desc_v_txt_description_title_characteristics"
+                style="@style/SortsTitle"
+                android:text="@string/f_desc_title_characteristics"
+        />
+
+        <com.maxm.algolearn.views.custom.JustifiedFontFlexTextView
+                android:id="@+id/f_desc_v_txt_characteristics"
+                style="@style/SortsAlgorithmText"
                 android:text="@string/def_algorithm_description"
-                app:layout_constraintTop_toBottomOf="@+id/f_desc_txt_algorithm_name"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -36,5 +49,16 @@
                 app:layout_constraintVertical_bias="0"
         />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.maxm.algolearn.views.custom.FontFlexTextView
+                android:id="@+id/f_desc_v_txt_description_title_demo"
+                style="@style/SortsTitle"
+                android:text="@string/f_desc_title_demonstration"
+        />
+
+        <ImageView
+                android:id="@+id/f_desc_v_img_demo"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+        />
+
+    </LinearLayout>
 </ScrollView>

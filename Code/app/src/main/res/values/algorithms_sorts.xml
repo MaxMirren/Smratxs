@@ -3,6 +3,7 @@
     <string-array name="sorts_names">
         <item>Stupid sort</item>
         <item>Insertion sort</item>
+        <item>-</item>
         <item>Bubble sort</item>
         <item>Quick sort</item>
         <item>Cocktail Shaker sort</item>

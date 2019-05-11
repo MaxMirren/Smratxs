@@ -6,9 +6,9 @@
         android:id="@+id/a_m_lyt_drl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activities.main.ActivityMain">
+        tools:context=".views.activities.ActivityMain">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -17,39 +17,109 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/toolbar_height"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
+                android:layout_alignParentTop="true"
         />
 
-        <include
+        <androidx.appcompat.widget.Toolbar
                 android:id="@+id/a_m_bottom_app_bar"
-                layout="@layout/bottom_app_bar"
-                android:layout_height="@dimen/toolbar_height"
                 android:layout_width="match_parent"
-                app:layout_constraintTop_toBottomOf="@+id/a_m_view_pager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-        />
+                android:layout_height="@dimen/toolbar_height"
+                android:layout_alignParentBottom="true"
+                android:background="@color/cardBackground"
+        >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/toolbar_height"
+                    android:background="@color/cardBackground"
+            >
 
-        <ImageButton
+                <ImageButton
+                        android:id="@+id/a_m_bab_v_img_btn_share"
+                        android:contentDescription="@string/desc_a_bab_img_btn_share"
+                        style="@style/SortsToolbarImgBtn"
+                        android:background="@drawable/baseline_share_white_48dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        android:layout_marginEnd="112dp"
+                />
+
+                <com.maxm.algolearn.views.custom.FontFlexTextView
+                        android:id="@+id/a_m_bab_v_txt_alg_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Algorithm name"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginEnd="156dp"
+                        app:layout_constraintVertical_bias="0.2"
+                />
+
+                <com.maxm.algolearn.views.custom.FontFlexTextView
+                        android:id="@+id/a_m_bab_v_txt_grp_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Group name"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintTop_toBottomOf="@id/a_m_bab_v_txt_alg_name"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginEnd="156dp"
+                        app:layout_constraintVertical_bias="0.6"
+                        android:textStyle="bold"
+                />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/desc_a_m_img_btn_go"
                 android:contentDescription="@string/desc_a_m_img_btn_go"
-                style="@style/SortsFAB"
-                app:layout_constraintTop_toTopOf="@id/a_m_bottom_app_bar"
-                app:layout_constraintBottom_toBottomOf="@id/a_m_bottom_app_bar"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_above="@id/a_m_bottom_app_bar"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="-32.5dp"
+                android:layout_marginEnd="@dimen/normal_space"
+                android:src="@drawable/baseline_code_black_48dp"
+                android:scaleType="fitCenter"
+                android:padding="17dp"
+                android:background="@drawable/custom_fab_shape"
         />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
             android:id="@+id/a_m_nav"
             style="@style/SortsNavigationView"
             app:headerLayout="@layout/navigation_header"
-    />
+    >
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/normal_space"
+        >
+
+            <com.maxm.algolearn.views.custom.FontFlexTextView
+                    android:id="@+id/a_m_v_txt_cat_1"
+                    style="@style/SortsNavigationViewTitle"
+                    android:text="Loops"
+                    android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:layout_marginTop="175dp"
+            />
+
+        </LinearLayout>
+
+    </com.google.android.material.navigation.NavigationView>
+
 </androidx.drawerlayout.widget.DrawerLayout>
