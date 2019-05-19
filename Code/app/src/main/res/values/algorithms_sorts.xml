@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="sorts_names">
+        <item>#SORT</item>
         <item>Stupid sort</item>
         <item>Insertion sort</item>
-        <item>-</item>
         <item>Bubble sort</item>
         <item>Quick sort</item>
         <item>Cocktail Shaker sort</item>
-        <item>Comb sort</item>
+        <item>#LIST SEARCH</item>
+        <item>Linear search</item>
     </string-array>
 
     <string-array name="sorts_description">

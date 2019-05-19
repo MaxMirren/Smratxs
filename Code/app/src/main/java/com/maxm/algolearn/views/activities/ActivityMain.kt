@@ -107,6 +107,7 @@ class ActivityMain : AppCompatActivity() {
                         Algorithm.List.getStringFieldOfAlgorithmWithIndex(it.itemId, Algorithm.List.Fields.DEBUGGER)
                     fragmentAlgorithmDescription.setContent(algorithmDescription)
                     fragmentCode.setContent(algorithmName, algorithmDebugger)
+                    findViewById<FontFlexTextView>(R.id.a_m_bab_v_txt_alg_name).text = Algorithm.List.getStringFieldOfAlgorithmWithIndex(it.itemId, Algorithm.List.Fields.NAME)
                     val drawerLayout: androidx.drawerlayout.widget.DrawerLayout = this@ActivityMain.findViewById(R.id.a_m_lyt_drl)
                     drawerLayout.closeDrawer(GravityCompat.START)
                 } else {

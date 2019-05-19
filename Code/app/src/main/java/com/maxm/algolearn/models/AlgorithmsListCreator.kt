@@ -1,13 +1,10 @@
 package com.maxm.algolearn.models
 
-import androidx.annotation.StringRes
-
 internal class AlgorithmsListCreator(private val namesArray: Array<String>,
                             private val descriptionArray: Array<String>,
                             private val characteristicsArray: Array<String>,
                             private val demosArray: Array<String>,
-                            private val debuggerArray: Array<String>,
-                            @StringRes private val categoryResId: Int) {
+                            private val debuggerArray: Array<String>) {
     init {
 //        if (allArraysAreEqual()) {
             addAllArrays()
@@ -18,16 +15,21 @@ internal class AlgorithmsListCreator(private val namesArray: Array<String>,
             (namesArray.size == sortsCode.size) and (namesArray.size == debuggerArray.size))
 
     private fun addAllArrays() {
-        Algorithm.List.addCategory(categoryResId)
-        val categoriesSize = Algorithm.List.getCategoriesSize() - 1
         var index = 0
-        var realSize = namesArray.size
-        while (index < realSize) {
-            if (namesArray[index] != "-") {
-                Algorithm.List.addAlgorithm(Algorithm(categoriesSize, namesArray[index], descriptionArray[index],  characteristicsArray[index], demosArray[index], debuggerArray[index]))
-            } else {
-                Algorithm.List.addAlgorithm(Algorithm(categoriesSize, "", "",  "", "", ""))
-                realSize--
+        var catsCount = 0
+        while (index < namesArray.size) {
+            if (namesArray[index].startsWith('#')) {
+                Algorithm.List.addCategory(namesArray[index].substring(1))
+                catsCount++
+                Algorithm.List.addAlgorithm(Algorithm(catsCount, "", "",  "", "", ""))
+            }
+            else {
+                Algorithm.List.addAlgorithm(Algorithm(catsCount,
+                    namesArray[index],
+                    descriptionArray[index - catsCount],
+                    characteristicsArray[index - catsCount],
+                    demosArray[index - catsCount],
+                    debuggerArray[index - catsCount]))
             }
             index++
         }

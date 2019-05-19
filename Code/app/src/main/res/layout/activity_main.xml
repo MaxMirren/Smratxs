@@ -65,7 +65,7 @@
                         android:id="@+id/a_m_bab_v_txt_grp_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Group name"
+                        android:text="@string/group_name"
                         android:textColor="@color/white"
                         android:textSize="14sp"
                         app:layout_constraintTop_toBottomOf="@id/a_m_bab_v_txt_alg_name"
@@ -112,10 +112,19 @@
             <com.maxm.algolearn.views.custom.FontFlexTextView
                     android:id="@+id/a_m_v_txt_cat_1"
                     style="@style/SortsNavigationViewTitle"
-                    android:text="Loops"
+                    android:text="SORTS"
                     android:textStyle="bold"
                     android:textAllCaps="true"
-                    android:layout_marginTop="175dp"
+                    android:layout_marginTop="79dp"
+            />
+
+            <com.maxm.algolearn.views.custom.FontFlexTextView
+                    android:id="@+id/a_m_v_txt_cat_2"
+                    style="@style/SortsNavigationViewTitle"
+                    android:text="LIST SEARCH"
+                    android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:layout_marginTop="270dp"
             />
 
         </LinearLayout>

@@ -19,7 +19,7 @@ class MainModel(private val view: ActivityMain) {
         val characteristicsArray = view.resources.getStringArray(R.array.sorts_description)
         val demosArray = view.resources.getStringArray(R.array.sorts_description)
         val debuggerArray = view.resources.getStringArray(R.array.sorts_debugs)
-        AlgorithmsListCreator(namesArray, descriptionArray, characteristicsArray, demosArray, debuggerArray, R.string.category_0)
+        AlgorithmsListCreator(namesArray, descriptionArray, characteristicsArray, demosArray, debuggerArray)
         for (key in sortsCode.keys) {
             sortsCode[key] = TextColorizer(sortsCode.getValue(key)).getColorizedText()
         }

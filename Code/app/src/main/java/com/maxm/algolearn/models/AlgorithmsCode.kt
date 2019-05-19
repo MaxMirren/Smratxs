@@ -84,7 +84,7 @@ internal var sortsCode: HashMap<String, String> = hashMapOf(
             "&emsp;left++;<br>" +
             "}",
 
-    "Comb sort" to
+    "Linear search" to
             "final double DECREASE_FACTOR = 1.25;<br>" +
             "int temp, space = (int)(int_array.length/DECREASE_FACTOR);<br>" +
             "boolean noChanges = false;<br>" +

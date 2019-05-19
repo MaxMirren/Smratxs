@@ -3,7 +3,7 @@ package com.maxm.algolearn.activities.main
 import com.google.android.material.navigation.NavigationView
 import com.maxm.algolearn.views.activities.ActivityMain
 
-class MainPresenter(private val view: ActivityMain) {
+class MainPresenter(view: ActivityMain) {
 
     private val model: MainModel = MainModel(view)
 

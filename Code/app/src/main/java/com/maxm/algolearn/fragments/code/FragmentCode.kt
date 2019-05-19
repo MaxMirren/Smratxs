@@ -53,17 +53,16 @@ class FragmentCode : AbstractFragment() {
      */
     internal fun setMainToolbar(toolbar: Toolbar) {
         mainToolbar = toolbar
-
     }
 
     /**
      * Connects vars to views placed in fragment fragment_fragment_code
      */
     private fun connectVarsToViews() {
-        textViewCodeDebugTitle = thisObject.findViewById(R.id.f_code_txt_algorithm_name)
         textViewCode = thisObject.findViewById(R.id.f_code_txt_code)
         textViewDebugger = thisObject.findViewById(R.id.f_code_txt_debugger)
         textViewLineCodeNumbered = thisObject.findViewById(R.id.f_code_txt_code_numbering)
+        textViewCodeDebugTitle = thisObject.findViewById(R.id.f_code_v_txt_title)
         fabResize = thisObject.findViewById(R.id.f_code_fab_resize)
         cardCode = thisObject.findViewById(R.id.f_code_card_code)
         cardDebug = thisObject.findViewById(R.id.f_code_card_debug)

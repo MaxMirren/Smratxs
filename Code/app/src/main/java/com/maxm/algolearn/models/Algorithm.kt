@@ -11,7 +11,7 @@ internal data class Algorithm(private val id: Int,
 
     object List {
         private var list: LinkedList<Algorithm> = LinkedList()
-        private var categories: LinkedList<Int> = LinkedList()
+        private var categories: LinkedList<String> = LinkedList()
 
         enum class Fields {
             NAME,
@@ -21,8 +21,8 @@ internal data class Algorithm(private val id: Int,
             DEBUGGER
         }
 
-        fun addCategory(resId: Int) {
-            categories.add(resId)
+        fun addCategory(name: String) {
+            categories.add(name)
         }
 
         fun addAlgorithm(algorithm: Algorithm) {

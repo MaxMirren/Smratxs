@@ -2,6 +2,7 @@ package com.maxm.algolearn.fragments.code
 
 import android.util.DisplayMetrics
 import com.maxm.algolearn.models.Algorithm
+import com.maxm.algolearn.models.Algorithm.List.getAlgorithmsCount
 
 class FCodeModel(private val fragmentCode: FragmentCode) {
 
@@ -10,13 +11,16 @@ class FCodeModel(private val fragmentCode: FragmentCode) {
      * @return map<name, debug info> of the first algorithm
      */
     internal fun getFirstNameAndDebugInfo(): HashMap<String, String> {
-        val algorithmName = Algorithm.List.getStringFieldOfAlgorithmWithIndex(0, Algorithm.List.Fields.NAME)
-        val algorithmDebugger = Algorithm.List.getStringFieldOfAlgorithmWithIndex(0, Algorithm.List.Fields.DEBUGGER)
         val hashMap: HashMap<String, String> = HashMap()
-        hashMap[algorithmName] = algorithmDebugger
+        for (index in 0 until getAlgorithmsCount()) {
+            val algorithmName = Algorithm.List.getStringFieldOfAlgorithmWithIndex(index, Algorithm.List.Fields.NAME)
+            if (algorithmName.isNotEmpty()) {
+                hashMap[algorithmName] = Algorithm.List.getStringFieldOfAlgorithmWithIndex(index, Algorithm.List.Fields.DEBUGGER)
+                break
+            }
+        }
         return hashMap
     }
-
 
 
     /**
