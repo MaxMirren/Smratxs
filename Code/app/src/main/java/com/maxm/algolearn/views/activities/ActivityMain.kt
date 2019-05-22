@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.core.view.GravityCompat
 import com.maxm.algolearn.models.Algorithm
 import com.maxm.algolearn.fragments.CustomFragmentPageAdapter
-import com.maxm.algolearn.fragments.FragmentAlgorithmDescription
+import com.maxm.algolearn.fragments.FragmentDescription
 import com.maxm.algolearn.fragments.code.FragmentCode
 import com.maxm.algolearn.R
 import com.maxm.algolearn.activities.main.MainPresenter
@@ -27,7 +27,7 @@ class ActivityMain : AppCompatActivity() {
     private lateinit var mainPresenter: MainPresenter
     private lateinit var viewPager: androidx.viewpager.widget.ViewPager
     private lateinit var actionBarDrawerToggle : ActionBarDrawerToggle
-    private lateinit var fragmentAlgorithmDescription: FragmentAlgorithmDescription
+    private lateinit var fragmentDescription: FragmentDescription
     private lateinit var fragmentCode: FragmentCode
     private lateinit var bottomAppBar: Toolbar
 
@@ -68,13 +68,13 @@ class ActivityMain : AppCompatActivity() {
      */
     private fun setViewPager() {
         val customFragmentPageAdapter = CustomFragmentPageAdapter(supportFragmentManager)
-        fragmentAlgorithmDescription = FragmentAlgorithmDescription()
+        fragmentDescription = FragmentDescription()
         fragmentCode = FragmentCode()
         bottomAppBar = this@ActivityMain.findViewById(R.id.a_m_bottom_app_bar)
         fragmentCode.setMainToolbar(bottomAppBar)
         findViewById<FontFlexTextView>(R.id.a_m_bab_v_txt_alg_name).setFont(Font.RUBIK_REGULAR)
         findViewById<FontFlexTextView>(R.id.a_m_bab_v_txt_grp_name).setFont(Font.RUBIK_MEDIUM)
-        customFragmentPageAdapter.setFragmentList(arrayListOf(fragmentAlgorithmDescription, fragmentCode))
+        customFragmentPageAdapter.setFragmentList(arrayListOf(fragmentDescription, fragmentCode))
         viewPager.addOnPageChangeListener(object : androidx.viewpager.widget.ViewPager.OnPageChangeListener {
 
             override fun onPageScrollStateChanged(state: Int) {}
@@ -83,7 +83,6 @@ class ActivityMain : AppCompatActivity() {
 
             override fun onPageSelected(position: Int) {
                 viewPager.currentItem = position
-
             }
         })
         viewPager.adapter = customFragmentPageAdapter
@@ -101,13 +100,10 @@ class ActivityMain : AppCompatActivity() {
         navigationView.setNavigationItemSelectedListener { it.run {
                 val algorithmName = Algorithm.List.getStringFieldOfAlgorithmWithIndex(it.itemId, Algorithm.List.Fields.NAME)
                 if (algorithmName.isNotEmpty()) {
-                    val algorithmDescription =
-                        Algorithm.List.getStringFieldOfAlgorithmWithIndex(it.itemId, Algorithm.List.Fields.DESCRIPTION)
-                    val algorithmDebugger =
-                        Algorithm.List.getStringFieldOfAlgorithmWithIndex(it.itemId, Algorithm.List.Fields.DEBUGGER)
-                    fragmentAlgorithmDescription.setContent(algorithmDescription)
-                    fragmentCode.setContent(algorithmName, algorithmDebugger)
-                    findViewById<FontFlexTextView>(R.id.a_m_bab_v_txt_alg_name).text = Algorithm.List.getStringFieldOfAlgorithmWithIndex(it.itemId, Algorithm.List.Fields.NAME)
+                    mainPresenter.updateCurrentFragmentsModels(algorithmName, fragmentDescription, fragmentCode, it.itemId)
+//                    fragmentDescription.setContent(algorithmDescription)
+//                    fragmentCode.setContent(algorithmName, algorithmDebugger)
+                    findViewById<FontFlexTextView>(R.id.a_m_bab_v_txt_alg_name).text = algorithmName
                     val drawerLayout: androidx.drawerlayout.widget.DrawerLayout = this@ActivityMain.findViewById(R.id.a_m_lyt_drl)
                     drawerLayout.closeDrawer(GravityCompat.START)
                 } else {

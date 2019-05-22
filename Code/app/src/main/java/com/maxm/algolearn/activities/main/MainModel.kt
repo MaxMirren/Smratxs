@@ -1,5 +1,6 @@
 package com.maxm.algolearn.activities.main
 
+import android.content.Context
 import com.google.android.material.navigation.NavigationView
 import com.maxm.algolearn.R
 import com.maxm.algolearn.models.Algorithm
@@ -8,17 +9,17 @@ import com.maxm.algolearn.models.sortsCode
 import com.maxm.algolearn.utils.TextColorizer
 import com.maxm.algolearn.views.activities.ActivityMain
 
-class MainModel(private val view: ActivityMain) {
+class MainModel(private val context: Context) {
 
     /**
      * Initializes list of algorithms places in strings.xml
      */
     internal fun initializeAlgorithmsList() {
-        val namesArray = view.resources.getStringArray(R.array.sorts_names)
-        val descriptionArray = view.resources.getStringArray(R.array.sorts_description)
-        val characteristicsArray = view.resources.getStringArray(R.array.sorts_description)
-        val demosArray = view.resources.getStringArray(R.array.sorts_description)
-        val debuggerArray = view.resources.getStringArray(R.array.sorts_debugs)
+        val namesArray = context.resources.getStringArray(R.array.sorts_names)
+        val descriptionArray = context.resources.getStringArray(R.array.sorts_description)
+        val characteristicsArray = context.resources.getStringArray(R.array.sorts_description)
+        val demosArray = context.resources.getStringArray(R.array.sorts_description)
+        val debuggerArray = context.resources.getStringArray(R.array.sorts_debugs)
         AlgorithmsListCreator(namesArray, descriptionArray, characteristicsArray, demosArray, debuggerArray)
         for (key in sortsCode.keys) {
             sortsCode[key] = TextColorizer(sortsCode.getValue(key)).getColorizedText()

@@ -1,18 +1,35 @@
 package com.maxm.algolearn.utils
 
+import android.os.Build
+import android.text.Html
+import android.text.Spanned
 import androidx.annotation.NonNull
+
+/**
+ * Gets spanned content from HTML in two ways in dependence on Android version
+ * @param html is string data which is to be converted to spanned html data
+ * @suppress using Html.fromHtml method for Android versions under Marshmallow
+ */
+@Suppress("DEPRECATION")
+fun fromHtml(html: String): Spanned {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY)
+    } else {
+        Html.fromHtml(html)
+    }
+}
 
 internal class TextColorizer(@NonNull private val sourceString: String) {
 
     private lateinit var colorizedString: String
 
-    enum class Colors(val hexCode: String) {
+    private enum class Colors(val hexCode: String) {
         RESERVED("#FF6600"),
         NUMBERS("#00FFB9"),
         STRINGS_CHARS("#42FF00")
     }
 
-    enum class Reserved(val text: String, val htmlText: String) {
+    private enum class Reserved(val text: String, val htmlText: String) {
         COMMA(",", "<font color='" + Colors.RESERVED.hexCode + "'>,</font>"),
         VAR("var", "<font color='" + Colors.RESERVED.hexCode + "'>var</font>"),
         TRUE("true", "<font color='" + Colors.RESERVED.hexCode + "'>true</font>"),
@@ -70,7 +87,7 @@ internal class TextColorizer(@NonNull private val sourceString: String) {
     }
 
 
-    private fun colorizeAllStrings(){
+    private fun colorizeAllStrings() {
         val charDoubleQuote = '\"'
         var startPosition = -1
         var startHasBeenSet = false

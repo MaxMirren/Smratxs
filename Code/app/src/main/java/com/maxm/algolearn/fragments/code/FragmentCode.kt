@@ -1,28 +1,27 @@
 package com.maxm.algolearn.fragments.code
 
-import android.os.Build
+import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import android.text.Html
-import android.text.Spanned
+import android.util.DisplayMetrics
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.ScrollView
 import android.widget.Toast
 import com.maxm.algolearn.R
-import com.maxm.algolearn.models.sortsCode
-import com.maxm.algolearn.fragments.AbstractFragment
 import com.maxm.algolearn.views.custom.Font
 import com.maxm.algolearn.views.custom.FontFlexTextView
-import com.maxm.algolearn.utils.TextColorizer
 import androidx.appcompat.widget.Toolbar
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import com.maxm.algolearn.databinding.FragmentFragmentCodeBinding
+import com.maxm.algolearn.viewmodels.code.FCodeViewModel
 
-class FragmentCode : AbstractFragment() {
+class FragmentCode: Fragment() {
 
-    // Links to fragment_fragment_code layout
-    override val layoutResInt: Int = R.layout.fragment_fragment_code
-    // Links to presenter which manages this fragment and FCodeModel
-    private lateinit var fCodePresenter: FCodePresenter
-    // Links to f_code_txt_algorithm_name Font Flex Text View
-    private lateinit var textViewCodeDebugTitle: FontFlexTextView
+    // Current view model instance
+    lateinit var viewModel: FCodeViewModel
     // Links to f_code_txt_code Font Flex Text View
     private lateinit var textViewCode: FontFlexTextView
     // Links to f_code_txt_debugger Font Flex Text View
@@ -37,13 +36,28 @@ class FragmentCode : AbstractFragment() {
     private lateinit var cardDebug: androidx.cardview.widget.CardView
     // Links to ActivityMain Toolbar object
     private lateinit var mainToolbar: Toolbar
+    // Binding link
+    private lateinit var binding: FragmentFragmentCodeBinding
+    // Stores the link of current object to be used as this
+    protected lateinit var thisObject: View
+
+
+
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_fragment_code, container, false)
+        thisObject = binding.root
+        viewModel = FCodeViewModel()
+        binding.fCodeViewModel = viewModel
+        initialize()
+        return thisObject
+    }
 
     /**
      * Initializes fragment views data and behaviour
      */
-    override fun initialize() {
+    private fun initialize() {
         connectVarsToViews()
-        fCodePresenter = FCodePresenter(this, thisObject)
         setTextViewsParameters()
         setProperHeightsForCards()
     }
@@ -62,7 +76,6 @@ class FragmentCode : AbstractFragment() {
         textViewCode = thisObject.findViewById(R.id.f_code_txt_code)
         textViewDebugger = thisObject.findViewById(R.id.f_code_txt_debugger)
         textViewLineCodeNumbered = thisObject.findViewById(R.id.f_code_txt_code_numbering)
-        textViewCodeDebugTitle = thisObject.findViewById(R.id.f_code_v_txt_title)
         fabResize = thisObject.findViewById(R.id.f_code_fab_resize)
         cardCode = thisObject.findViewById(R.id.f_code_card_code)
         cardDebug = thisObject.findViewById(R.id.f_code_card_debug)
@@ -72,38 +85,11 @@ class FragmentCode : AbstractFragment() {
      * Sets fonts and text for all FontFlexTextView views
      */
     private fun setTextViewsParameters() {
-        textViewCodeDebugTitle.setFont(Font.RUBIK_MEDIUM)
+        viewModel.setDefaultAlgorithmContent()
         textViewCode.setFont(Font.LUCIDA_CONSOLE)
         textViewDebugger.setFont(Font.SEGOEUI_REGULAR)
         textViewLineCodeNumbered.setFont(Font.LUCIDA_CONSOLE)
-        fCodePresenter.setContentOfTheFirstAlgorithm()
-    }
-
-    /**
-     * Sets data (text) for all FontFlexTextView views
-     * @param algorithmName - name of algorithm which code is to be displayed and set to f_code_txt_algorithm_name
-     * @param algorithmDebugger - debug data (text) which is to be set to textViewDebugger
-     */
-    fun setContent(algorithmName: String, algorithmDebugger: String) {
-        textViewCodeDebugTitle.text = algorithmName
-        textViewCode.text = fromHtml(sortsCode.getValue(algorithmName))
-        textViewDebugger.text = fromHtml(TextColorizer(algorithmDebugger).getColorizedText())
         textViewLineCodeNumbered.useAsLineNumberingForFontTextView(textViewCode)
-        setProperHeightsForCards()
-    }
-
-    /**
-     * Gets spanned content from HTML in two ways in dependence on Android version
-     * @param html is string data which is to be converted to spanned html data
-     * @suppress using Html.fromHtml method for Android versions under Marshmallow
-     */
-    @Suppress("DEPRECATION")
-    private fun fromHtml(html: String): Spanned {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY)
-        } else {
-            Html.fromHtml(html)
-        }
     }
 
     /**
@@ -111,17 +97,17 @@ class FragmentCode : AbstractFragment() {
      * and behaviour
      * Calculates the best height for cards to fit the user's screen height
      */
-    private fun setProperHeightsForCards() {
+    fun setProperHeightsForCards() {
         thisObject.post {
             val fragmentHeight = thisObject.measuredHeight
-            val dpSpaceInPx = fCodePresenter.getDPInPX(63f)
+            val dpSpaceInPx = convertDpToPixel(63f)
             val eachCardsHeight = ((fragmentHeight - dpSpaceInPx) / 2).toInt()
             val maxCodeCardHeightInPx = textViewLineCodeNumbered.layoutHeight
             val lineHeightInPx = textViewLineCodeNumbered.layoutLineHeight
             val threeCodeLinesHeightInPx = (lineHeightInPx * 3.2).toInt()
             val topYOfCodeCardView = cardCode.y.toInt()
             val layoutParams = fabResize.layoutParams as RelativeLayout.LayoutParams
-            layoutParams.topMargin = fCodePresenter.getDPInPX(54f).toInt() + eachCardsHeight
+            layoutParams.topMargin = convertDpToPixel(54f).toInt() + eachCardsHeight
             fabResize.layoutParams = layoutParams
             cardDebug.layoutParams.height = eachCardsHeight
             val resizeFabTopStub = topYOfCodeCardView + threeCodeLinesHeightInPx
@@ -159,5 +145,15 @@ class FragmentCode : AbstractFragment() {
                 mainToolbar
             )
         )
+    }
+
+    /**
+     * Converts dp to px
+     * @param dp dp value to be converted to px value in float
+     * @return Float value of converted px
+     */
+    private fun convertDpToPixel(dp: Float): Float {
+        val metrics = resources.displayMetrics
+        return dp * (metrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
     }
 }
