@@ -7,7 +7,6 @@ import com.maxm.algolearn.models.Algorithm
 import com.maxm.algolearn.models.AlgorithmsListCreator
 import com.maxm.algolearn.models.sortsCode
 import com.maxm.algolearn.utils.TextColorizer
-import com.maxm.algolearn.views.activities.ActivityMain
 
 class MainModel(private val context: Context) {
 
@@ -16,10 +15,10 @@ class MainModel(private val context: Context) {
      */
     internal fun initializeAlgorithmsList() {
         val namesArray = context.resources.getStringArray(R.array.sorts_names)
-        val descriptionArray = context.resources.getStringArray(R.array.sorts_description)
-        val characteristicsArray = context.resources.getStringArray(R.array.sorts_description)
-        val demosArray = context.resources.getStringArray(R.array.sorts_description)
-        val debuggerArray = context.resources.getStringArray(R.array.sorts_debugs)
+        val descriptionArray = context.resources.getStringArray(R.array.description)
+        val characteristicsArray = context.resources.getStringArray(R.array.characteristics)
+        val demosArray = context.resources.getStringArray(R.array.demos)
+        val debuggerArray = context.resources.getStringArray(R.array.debugs)
         AlgorithmsListCreator(namesArray, descriptionArray, characteristicsArray, demosArray, debuggerArray)
         for (key in sortsCode.keys) {
             sortsCode[key] = TextColorizer(sortsCode.getValue(key)).getColorizedText()

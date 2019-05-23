@@ -16,7 +16,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.maxm.algolearn.databinding.FragmentFragmentCodeBinding
-import com.maxm.algolearn.viewmodels.code.FCodeViewModel
+import com.maxm.algolearn.viewmodels.FCodeViewModel
 
 class FragmentCode: Fragment() {
 
@@ -39,13 +39,11 @@ class FragmentCode: Fragment() {
     // Binding link
     private lateinit var binding: FragmentFragmentCodeBinding
     // Stores the link of current object to be used as this
-    protected lateinit var thisObject: View
-
-
+    private lateinit var thisObject: View
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_fragment_code, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_code, container, false)
         thisObject = binding.root
         viewModel = FCodeViewModel()
         binding.fCodeViewModel = viewModel
@@ -70,7 +68,7 @@ class FragmentCode: Fragment() {
     }
 
     /**
-     * Connects vars to views placed in fragment fragment_fragment_code
+     * Connects vars to views placed in fragment fragment_code
      */
     private fun connectVarsToViews() {
         textViewCode = thisObject.findViewById(R.id.f_code_txt_code)

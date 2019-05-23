@@ -21,4 +21,6 @@
     <string name="f_desc_title_demonstration">DEMONSTRATION</string>
     <string name="f_code_debug_title">CODE / DEBUG</string>
     <string name="group_name">Group name</string>
+
+    <string name="f_desc_content_desc">Gif image demonstrating algorithm</string>
 </resources>

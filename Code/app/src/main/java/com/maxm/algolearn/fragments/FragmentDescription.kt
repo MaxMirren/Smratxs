@@ -1,25 +1,41 @@
 package com.maxm.algolearn.fragments
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import com.maxm.algolearn.R
-import com.maxm.algolearn.models.Algorithm
+import com.maxm.algolearn.databinding.FragmentAlgorithmDescriptionBinding
+import com.maxm.algolearn.viewmodels.FDescriptionViewModel
 import com.maxm.algolearn.views.custom.Font
 import com.maxm.algolearn.views.custom.FontFlexTextView
 import com.maxm.algolearn.views.custom.JustifiedFontFlexTextView
 
 
-internal class FragmentDescription: AbstractFragment() {
+internal class FragmentDescription: Fragment() {
 
-    override val layoutResInt: Int =  R.layout.fragment_algorithm_description
     private lateinit var fontFlexTextViewAlgorithmDescTitle: FontFlexTextView
     private lateinit var fontFlexTextViewAlgorithmDesc: JustifiedFontFlexTextView
     private lateinit var fontFlexTextViewAlgorithmCharTitle: FontFlexTextView
-    private lateinit var fontFlexTextViewAlgorithmChar: JustifiedFontFlexTextView
+    private lateinit var fontFlexTextViewAlgorithmChar: FontFlexTextView
     private lateinit var fontFlexTextViewAlgorithmDemoTitle: FontFlexTextView
-    private lateinit var fontFlexTextViewAlgorithmDemo: ImageView
+    private lateinit var thisObject: View
+    private lateinit var binding: FragmentAlgorithmDescriptionBinding
+    internal lateinit var viewModel: FDescriptionViewModel
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_algorithm_description, container, false)
+        thisObject = binding.root
+        viewModel = FDescriptionViewModel()
+        binding.fDescriptionViewModel = viewModel
+        initialize()
+        return thisObject
+    }
 
-    override fun initialize() {
+    private fun initialize() {
         setTextViewsParameters()
     }
 
@@ -29,15 +45,9 @@ internal class FragmentDescription: AbstractFragment() {
         fontFlexTextViewAlgorithmCharTitle = thisObject.findViewById(R.id.f_desc_v_txt_description_title_characteristics)
         fontFlexTextViewAlgorithmChar = thisObject.findViewById(R.id.f_desc_v_txt_characteristics)
         fontFlexTextViewAlgorithmDemoTitle = thisObject.findViewById(R.id.f_desc_v_txt_description_title_demo)
-        fontFlexTextViewAlgorithmDemo = thisObject.findViewById(R.id.f_desc_v_img_demo)
         fontFlexTextViewAlgorithmDescTitle.setFont(Font.RUBIK_MEDIUM)
         fontFlexTextViewAlgorithmCharTitle.setFont(Font.RUBIK_MEDIUM)
         fontFlexTextViewAlgorithmDemoTitle.setFont(Font.RUBIK_MEDIUM)
-        val algorithmDescription = Algorithm.List.getStringFieldOfAlgorithmWithIndex(0, Algorithm.List.Fields.DESCRIPTION)
-        setContent(algorithmDescription)
-    }
-
-    fun setContent(algorithmDescription: String) {
-        fontFlexTextViewAlgorithmDesc.text = algorithmDescription
+        viewModel.setDefaultDescriptionData()
     }
 }

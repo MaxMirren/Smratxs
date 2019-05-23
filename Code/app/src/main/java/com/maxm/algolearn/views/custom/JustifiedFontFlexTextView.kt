@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.AssetManager
 import android.graphics.Typeface
 import android.util.AttributeSet
+import android.view.LayoutInflater
 
 import com.uncopt.android.widget.text.justify.JustifiedTextView
 

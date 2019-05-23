@@ -1,14 +1,17 @@
 package com.maxm.algolearn.utils;
 
+import android.net.Uri;
 import android.widget.ImageView;
-import androidx.annotation.DrawableRes;
 import androidx.databinding.BindingAdapter;
+import com.bumptech.glide.Glide;
 
 public class DataBindingAdapters {
 
-    @BindingAdapter("app:imgFromDrawableRes")
-    public static void setPaddingLeft(ImageView imageView, @DrawableRes int drawableResource) {
-        imageView.setImageDrawable(imageView.getContext().getDrawable(drawableResource));
+    @BindingAdapter("app:imgFromAssetPath")
+    public static void imgFromAssetPath(ImageView imageView, String assetPath) {
+        Glide.with(imageView.getContext())
+                .load(Uri.parse(assetPath))
+                .into(imageView);
     }
 
 }

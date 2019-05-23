@@ -6,8 +6,8 @@ import com.maxm.algolearn.utils.fromHtml
 data class FCodeModel(val code: Spanned? = null,
                       val debug: Spanned? = null) {
 
-    class Builder(var code: Spanned? = null,
-                  var debug: Spanned? = null) {
+    class Builder(private var code: Spanned? = null,
+                  private var debug: Spanned? = null) {
 
         fun code(code: String) = apply { this@Builder.code = fromHtml(code) }
 

@@ -6,6 +6,7 @@ import com.maxm.algolearn.fragments.FragmentDescription
 import com.maxm.algolearn.fragments.code.FragmentCode
 import com.maxm.algolearn.models.Algorithm
 import com.maxm.algolearn.models.FCodeModel
+import com.maxm.algolearn.models.FDescriptionModel
 import com.maxm.algolearn.models.sortsCode
 import com.maxm.algolearn.utils.TextColorizer
 
@@ -33,7 +34,16 @@ class MainPresenter(context: Context) {
                                               itemId: Int) {
         val algorithmDescription =
             Algorithm.List.getStringFieldOfAlgorithmWithIndex(itemId, Algorithm.List.Fields.DESCRIPTION)
-//        val descriptionFModel
+        val algorithmCharacteristics =
+            Algorithm.List.getStringFieldOfAlgorithmWithIndex(itemId, Algorithm.List.Fields.CHARACTERISTICS)
+        val algorithmImgRes =
+            Algorithm.List.getStringFieldOfAlgorithmWithIndex(itemId, Algorithm.List.Fields.DEMO)
+        val fDescriptionModel = FDescriptionModel.Builder()
+            .description(algorithmDescription)
+            .characteristics(algorithmCharacteristics)
+            .imgAssetPath(algorithmImgRes)
+            .build()
+        fragmentDescription.viewModel.currentFDescriptionModel.set(fDescriptionModel)
         val algorithmDebugger =
             Algorithm.List.getStringFieldOfAlgorithmWithIndex(itemId, Algorithm.List.Fields.DEBUGGER)
         val fCodeModel = FCodeModel.Builder()

@@ -24,10 +24,10 @@ class AlgorithmsInit {
         var checkIsSuccessful = false
         try {
             val namesArray = instrumentationContext.resources.getStringArray(R.array.sorts_names)
-            val descriptionArray = instrumentationContext.resources.getStringArray(R.array.sorts_description)
-            val characteristicsArray = instrumentationContext.resources.getStringArray(R.array.sorts_description)
-            val demosArray = instrumentationContext.resources.getStringArray(R.array.sorts_description)
-            val debuggerArray = instrumentationContext.resources.getStringArray(R.array.sorts_debugs)
+            val descriptionArray = instrumentationContext.resources.getStringArray(R.array.description)
+            val characteristicsArray = instrumentationContext.resources.getStringArray(R.array.description)
+            val demosArray = instrumentationContext.resources.getStringArray(R.array.description)
+            val debuggerArray = instrumentationContext.resources.getStringArray(R.array.debugs)
             checkIsSuccessful = if (allArraysAreWithProperCount(namesArray,
                     arrayListOf(descriptionArray, characteristicsArray, demosArray, debuggerArray))) {
                 AlgorithmsListCreator(namesArray, descriptionArray, characteristicsArray, demosArray, debuggerArray)
