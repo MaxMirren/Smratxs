@@ -1,7 +1,9 @@
 package com.maxm.algolearn.activities.main
 
 import android.content.Context
+import android.widget.TextView
 import com.google.android.material.navigation.NavigationView
+import com.maxm.algolearn.R
 import com.maxm.algolearn.fragments.FragmentDescription
 import com.maxm.algolearn.fragments.code.FragmentCode
 import com.maxm.algolearn.models.Algorithm
@@ -9,6 +11,7 @@ import com.maxm.algolearn.models.FCodeModel
 import com.maxm.algolearn.models.FDescriptionModel
 import com.maxm.algolearn.models.sortsCode
 import com.maxm.algolearn.utils.TextColorizer
+import com.maxm.algolearn.views.custom.FontFlexTextView
 
 class MainPresenter(context: Context) {
 
@@ -20,6 +23,12 @@ class MainPresenter(context: Context) {
     internal fun initializeAlgorithmsList() {
         model.initializeAlgorithmsList()
     }
+
+    internal fun setNameAndGroupName(nameTextView: TextView, groupNameTextView: TextView) {
+        nameTextView.text = Algorithm.List.getStringFieldOfAlgorithmWithIndex(1, Algorithm.List.Fields.NAME)
+        groupNameTextView.text = Algorithm.List.getCategoryByIndex(0)
+    }
+
 
     /**
      * Adds all items to navigation view

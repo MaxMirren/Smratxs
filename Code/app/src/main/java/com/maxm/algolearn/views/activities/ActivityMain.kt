@@ -17,6 +17,7 @@ import com.maxm.algolearn.views.custom.Font
 import com.maxm.algolearn.views.custom.FontFlexTextView
 import kotlin.system.exitProcess
 import android.content.Intent
+import android.widget.TextView
 import com.maxm.algolearn.fragments.AboutDialog
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -51,7 +52,11 @@ class ActivityMain : AppCompatActivity() {
     private fun initialize() {
         initializeGloballyUsedViews()
         mainPresenter = MainPresenter(this)
-        mainPresenter.initializeAlgorithmsList()
+        with(mainPresenter) {
+            initializeAlgorithmsList()
+            setNameAndGroupName(findViewById(R.id.a_m_bab_v_txt_alg_name),
+                findViewById(R.id.a_m_bab_v_txt_grp_name))
+        }
         setViewPager()
         setNavigationView()
         setFabBehaviour()
@@ -108,6 +113,8 @@ class ActivityMain : AppCompatActivity() {
 //                    fragmentDescription.setContent(algorithmDescription)
 //                    fragmentCode.setContent(algorithmName, algorithmDebugger)
                     findViewById<FontFlexTextView>(R.id.a_m_bab_v_txt_alg_name).text = algorithmName
+                    findViewById<FontFlexTextView>(R.id.a_m_bab_v_txt_grp_name).text =
+                        Algorithm.List.getCategoryByIndex(Algorithm.List.getStringFieldOfAlgorithmWithIndex(it.itemId, Algorithm.List.Fields.ID).toInt())
                     val drawerLayout: androidx.drawerlayout.widget.DrawerLayout = this@ActivityMain.findViewById(R.id.a_m_lyt_drl)
                     drawerLayout.closeDrawer(GravityCompat.START)
                 } else {
@@ -128,7 +135,7 @@ class ActivityMain : AppCompatActivity() {
     }
 
     private fun setImgBtnInfoBehaviour() {
-        a_m_nav.getHeaderView(0).setOnClickListener {
+        a_m_nav.getHeaderView(0).findViewById<ImageButton>(R.id.a_m_nav_h_img_btn_info).setOnClickListener {
             val dialogFragment = AboutDialog()
             dialogFragment.show(supportFragmentManager, "Sample Fragment")
         }

@@ -14,6 +14,7 @@ internal data class Algorithm(private val id: Int,
         private var categories: LinkedList<String> = LinkedList()
 
         enum class Fields {
+            ID,
             NAME,
             DESCRIPTION,
             CHARACTERISTICS,
@@ -43,6 +44,7 @@ internal data class Algorithm(private val id: Int,
 
         fun getStringFieldOfAlgorithmWithIndex(index: Int, field: Fields) =
             when (field) {
+                Fields.ID -> list[index].id.toString()
                 Fields.NAME -> list[index].name
                 Fields.DESCRIPTION -> list[index].description
                 Fields.DEMO -> list[index].demo

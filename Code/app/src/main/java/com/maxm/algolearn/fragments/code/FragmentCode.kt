@@ -15,7 +15,7 @@ import com.maxm.algolearn.views.custom.FontFlexTextView
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.maxm.algolearn.databinding.FragmentFragmentCodeBinding
+import com.maxm.algolearn.databinding.FragmentCodeBinding
 import com.maxm.algolearn.viewmodels.FCodeViewModel
 
 class FragmentCode: Fragment() {
@@ -37,7 +37,7 @@ class FragmentCode: Fragment() {
     // Links to ActivityMain Toolbar object
     private lateinit var mainToolbar: Toolbar
     // Binding link
-    private lateinit var binding: FragmentFragmentCodeBinding
+    private lateinit var binding: FragmentCodeBinding
     // Stores the link of current object to be used as this
     private lateinit var thisObject: View
 

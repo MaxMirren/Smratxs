@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="f_about_title">About Algolearn</string>
+    <string name="f_about_main_text">This project helps to learn all basic algorithms;
+        try them out, see the debug processes of each one;
+        learn how to code this using C++ family programming language.</string>
+    <string name="f_about_version"><b>Version:</b> 1.0</string>
+    <string name="f_about_author"><b>Author:</b> Maxim Mironov \nmaxmirrenga@gmail.com</string>
+    <string name="f_about_btn_rate">RATE</string>
+    <string name="f_about_btn_close">CLOSE</string>
+</resources>

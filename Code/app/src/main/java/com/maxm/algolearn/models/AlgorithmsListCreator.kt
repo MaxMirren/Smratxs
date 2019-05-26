@@ -21,10 +21,10 @@ internal class AlgorithmsListCreator(private val namesArray: Array<String>,
             if (namesArray[index].startsWith('#')) {
                 Algorithm.List.addCategory(namesArray[index].substring(1))
                 catsCount++
-                Algorithm.List.addAlgorithm(Algorithm(catsCount, "", "",  "", "", ""))
+                Algorithm.List.addAlgorithm(Algorithm(catsCount - 1, "", "",  "", "", ""))
             }
             else {
-                Algorithm.List.addAlgorithm(Algorithm(catsCount,
+                Algorithm.List.addAlgorithm(Algorithm(catsCount - 1,
                     namesArray[index],
                     descriptionArray[index - catsCount],
                     characteristicsArray[index - catsCount],
